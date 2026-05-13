@@ -44,19 +44,47 @@ h1,h2,h3{font-family:'Lora',serif}
 .select-inner{position:relative;z-index:1;width:100%;max-width:700px}
 .select-eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:12px;display:block}
 .select-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:600;font-style:italic;color:var(--cream);margin-bottom:8px;line-height:1.15}
-.select-sub{font-size:14px;color:var(--cream-70);margin-bottom:28px;max-width:480px}
-.user-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:12px;margin-bottom:20px}
-.user-card{
-  background:var(--cream-06);border:1px solid var(--cream-10);border-radius:14px;
-  padding:18px 16px;cursor:pointer;transition:all .2s;text-align:left;position:relative;
+.select-sub{font-size:14px;color:var(--cream-70);margin-bottom:24px;max-width:480px}
+
+/* ── ADVISOR FORM ── */
+.advisor-form{
+  background:var(--cream-06);border:1px solid var(--cream-18);border-radius:16px;
+  padding:20px;margin-bottom:20px;
 }
-.user-card:hover{border-color:var(--purple);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
-.user-card.sel{border-color:var(--purple);background:var(--purple-l)}
-.uc-type{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:8px}
-.uc-name{font-family:'Lora',serif;font-size:1.2rem;font-style:italic;color:var(--cream);margin-bottom:4px}
-.uc-desc{font-size:12px;color:var(--cream-40);line-height:1.5}
-.uc-level{position:absolute;top:12px;right:12px;font-size:9px;letter-spacing:1px;text-transform:uppercase;
-  padding:3px 8px;border-radius:20px;background:rgba(123,111,232,.15);border:1px solid rgba(123,111,232,.3);color:var(--lavender)}
+.af-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cream-40);margin-bottom:14px;display:block}
+.af-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.af-row{grid-template-columns:1fr}}
+.af-field{display:flex;flex-direction:column;gap:6px}
+.af-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cream-40)}
+.af-input{
+  padding:10px 14px;font-size:14px;
+  background:var(--cream-06);border:1px solid var(--cream-18);border-radius:10px;
+  outline:none;font-family:'Questrial',sans-serif;color:var(--cream);
+  transition:border-color .2s;
+}
+.af-input:focus{border-color:rgba(123,111,232,.5)}
+.af-input::placeholder{color:var(--cream-40);font-style:italic}
+.af-input.error{border-color:rgba(232,96,76,.6)}
+.af-err{font-size:11px;color:var(--coral);display:none;margin-top:2px}
+.af-err.show{display:block}
+
+.mystery-box{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--cream-06);border:1px solid var(--cream-18);border-radius:20px;
+  padding:28px;margin-bottom:20px;gap:8px;
+  animation:fadeUp .5s ease;
+}
+.mystery-icon{
+  width:64px;height:64px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Lora',serif;font-size:1.8rem;font-style:italic;font-weight:600;
+  background:linear-gradient(135deg,rgba(123,111,232,.25),rgba(184,156,247,.1));
+  border:2px solid rgba(123,111,232,.3);color:var(--lavender);
+  animation:pulse 2.5s ease-in-out infinite;
+}
+.mystery-label{font-family:'Lora',serif;font-size:1.1rem;font-style:italic;color:var(--cream);margin-top:4px}
+.mystery-hint{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cream-40)}
+
 .start-btn{
   width:100%;padding:15px;border:none;border-radius:40px;
   background:linear-gradient(135deg,var(--purple),#9b8ffa);
@@ -178,6 +206,7 @@ h1,h2,h3{font-family:'Lora',serif}
 #screen-end{
   flex-direction:column;align-items:center;justify-content:center;
   background:linear-gradient(160deg,#0c1118,#141d2b);position:relative;overflow:hidden;
+  padding:24px;
 }
 #screen-end::before{
   content:'';position:absolute;inset:0;
@@ -186,20 +215,51 @@ h1,h2,h3{font-family:'Lora',serif}
     radial-gradient(1.5px 1.5px at 75% 15%,rgba(123,111,232,.35) 0%,transparent 100%),
     radial-gradient(1px 1px at 45% 75%,rgba(184,156,247,.3) 0%,transparent 100%);
 }
-.end-inner{position:relative;z-index:1;max-width:560px;width:100%;padding:0 24px;text-align:center}
+.end-inner{position:relative;z-index:1;max-width:560px;width:100%;text-align:center}
 .end-icon{font-size:2.5rem;margin-bottom:16px}
 .end-title{font-family:'Lora',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-style:italic;font-weight:600;color:var(--cream);margin-bottom:6px}
-.end-sub{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--cream-40);margin-bottom:24px}
+.end-sub{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--cream-40);margin-bottom:16px}
+
+/* ── SCORE BADGE ── */
+.score-badge{
+  display:inline-flex;align-items:center;justify-content:center;flex-direction:column;
+  width:110px;height:110px;border-radius:50%;margin:0 auto 20px;
+  border:3px solid var(--purple);
+  background:linear-gradient(135deg,rgba(123,111,232,.2),rgba(184,156,247,.08));
+  box-shadow:0 0 32px rgba(123,111,232,.3);
+  animation:fadeUp .6s ease;
+}
+.score-num{font-family:'Lora',serif;font-size:2.4rem;font-weight:600;color:var(--cream);line-height:1}
+.score-max{font-size:11px;letter-spacing:1px;color:var(--cream-40);margin-top:2px}
+.score-badge.high{border-color:var(--green);box-shadow:0 0 32px rgba(111,255,176,.25)}
+.score-badge.high .score-num{color:var(--green)}
+.score-badge.mid{border-color:var(--gold);box-shadow:0 0 32px rgba(255,213,79,.25)}
+.score-badge.mid .score-num{color:var(--gold)}
+.score-badge.low{border-color:var(--coral);box-shadow:0 0 32px rgba(232,96,76,.25)}
+.score-badge.low .score-num{color:var(--coral)}
+
 .end-feedback{
   background:var(--cream-06);border:1px solid var(--cream-18);border-radius:14px;
-  padding:20px 22px;margin-bottom:24px;text-align:left;
-  max-height:320px;overflow-y:auto;
+  padding:20px 22px;margin-bottom:20px;text-align:left;
+  max-height:280px;overflow-y:auto;
   scrollbar-width:thin;scrollbar-color:var(--cream-10) transparent;
 }
 .ef-section{margin-bottom:14px}
 .ef-section:last-child{margin-bottom:0}
 .ef-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:6px;display:block}
 .ef-text{font-size:13px;color:var(--cream-70);line-height:1.75}
+
+.sync-status{
+  font-size:11px;letter-spacing:1px;color:var(--cream-40);margin-bottom:16px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:var(--cream-40);flex-shrink:0}
+.sync-status.syncing .sync-dot{background:var(--gold);animation:pulse 1s infinite}
+.sync-status.synced .sync-dot{background:var(--green)}
+.sync-status.synced{color:var(--green)}
+.sync-status.error .sync-dot{background:var(--coral)}
+.sync-status.error{color:var(--coral)}
+
 .end-btn{
   width:100%;padding:14px;border-radius:40px;border:none;cursor:pointer;
   background:linear-gradient(135deg,var(--purple),#9b8ffa);
@@ -211,39 +271,39 @@ h1,h2,h3{font-family:'Lora',serif}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--cream-18);border-radius:2px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── MYSTERY BOX ── */
-.mystery-box{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:var(--cream-06);border:1px solid var(--cream-18);border-radius:20px;
-  padding:32px;margin-bottom:24px;gap:8px;
-  animation:fadeUp .5s ease;
-}
-.mystery-icon{
-  width:72px;height:72px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Lora',serif;font-size:2rem;font-style:italic;font-weight:600;
-  background:linear-gradient(135deg,rgba(123,111,232,.25),rgba(184,156,247,.1));
-  border:2px solid rgba(123,111,232,.3);color:var(--lavender);
-  animation:pulse 2.5s ease-in-out infinite;
-}
-.mystery-label{font-family:'Lora',serif;font-size:1.1rem;font-style:italic;color:var(--cream);margin-top:4px}
-.mystery-hint{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cream-40)}
 </style>
 </head>
 <body>
 
 <!-- SELECT -->
-<div class="screen active" id="screen-select">
+<div class="screen" id="screen-select">
   <div class="select-inner">
     <span class="select-eyebrow">Nebula Academy · Practice</span>
     <h1 class="select-title">Advisor Chat<br>Simulation</h1>
     <p class="select-sub">A random client is waiting for you. You won't know who until the session begins. You have 3 minutes.</p>
-    <div class="mystery-box" id="mystery-box">
+
+    <div class="advisor-form">
+      <span class="af-title">Your details</span>
+      <div class="af-row">
+        <div class="af-field">
+          <span class="af-label">Name</span>
+          <input class="af-input" id="advisor-name" type="text" placeholder="Your name" autocomplete="name">
+          <span class="af-err" id="err-name">Please enter your name</span>
+        </div>
+        <div class="af-field">
+          <span class="af-label">Email</span>
+          <input class="af-input" id="advisor-email" type="email" placeholder="your@email.com" autocomplete="email">
+          <span class="af-err" id="err-email">Please enter a valid email</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mystery-box">
       <div class="mystery-icon">?</div>
       <div class="mystery-label">Unknown Client</div>
       <div class="mystery-hint">Identity revealed on start</div>
     </div>
+
     <button class="start-btn" id="start-btn" onclick="startSession()">Begin Practice ◆</button>
   </div>
 </div>
@@ -288,25 +348,28 @@ h1,h2,h3{font-family:'Lora',serif}
     <div class="end-icon">✦</div>
     <h2 class="end-title">Session Complete</h2>
     <div class="end-sub" id="end-client-label">Practice Analysis</div>
-    <div class="end-feedback" id="end-feedback"><div class="ef-text" style="color:var(--cream-40);font-style:italic">Generating analysis…</div></div>
-  </div>
-</div>
-
-<!-- ALREADY DONE -->
-<div class="screen" id="screen-done">
-  <div class="end-inner">
-    <div class="end-icon">✦</div>
-    <h2 class="end-title">Your Results</h2>
-    <div class="end-sub" id="done-client-label">Previous Session</div>
-    <div class="end-feedback" id="done-feedback"></div>
+    <div class="score-badge" id="score-badge" style="display:none">
+      <div class="score-num" id="score-num">—</div>
+      <div class="score-max">/ 100</div>
+    </div>
+    <div class="sync-status" id="sync-status" style="display:none">
+      <div class="sync-dot"></div>
+      <span id="sync-text">Saving results…</span>
+    </div>
+    <div class="end-feedback" id="end-feedback">
+      <div class="ef-text" style="color:var(--cream-40);font-style:italic">Generating analysis…</div>
+    </div>
+    <button class="end-btn" onclick="restartSession()">Practice Again ◆</button>
   </div>
 </div>
 
 <script>
 // ════════════════════════════════════════════════
-// ↓↓↓ ВСТАВИТИ URL CLOUDFLARE WORKER СЮДИ ↓↓↓
 const PROXY_URL = "https://nebula-gemini.alina-rudenkova.workers.dev";
-// ↑↑↑ Виглядає так: https://nebula-gemini.YOURNAME.workers.dev
+
+// Google Sheets Web App URL — вставити сюди після деплою Apps Script
+// Залишити порожнім якщо Google Sheets ще не налаштований
+const SHEETS_URL = "";
 // ════════════════════════════════════════════════
 
 const CLIENTS = [
@@ -473,8 +536,8 @@ let urgentSent = false;
 let transcript = [];
 let fbCount = 0;
 let geminiHistory = [];
-
-const STORAGE_KEY = 'nebula_practice_result';
+let advisorName = '';
+let advisorEmail = '';
 
 // ── API CALL з retry ──
 async function callGemini(payload, retries = 2) {
@@ -494,35 +557,78 @@ async function callGemini(payload, retries = 2) {
   }
 }
 
-// ── INIT — check localStorage ──
+// ── VALIDATE EMAIL ──
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
+
+// ── INIT ──
 function init() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved) {
-    try {
-      const data = JSON.parse(saved);
-      showDoneScreen(data);
-      return;
-    } catch(e) {
-      localStorage.removeItem(STORAGE_KEY);
-    }
-  }
-  document.getElementById('screen-select').classList.add('active');
-}
-
-function showDoneScreen(data) {
+  // Always show select screen — no localStorage lock
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-done').classList.add('active');
-  document.getElementById('done-client-label').textContent =
-    `${data.clientName} · ${data.clientType}`;
-  document.getElementById('done-feedback').innerHTML = data.html;
+  document.getElementById('screen-select').classList.add('active');
+
+  // Restore name/email if saved
+  const savedName = localStorage.getItem('nebula_advisor_name');
+  const savedEmail = localStorage.getItem('nebula_advisor_email');
+  if (savedName) document.getElementById('advisor-name').value = savedName;
+  if (savedEmail) document.getElementById('advisor-email').value = savedEmail;
 }
 
-// ── START — pick random client ──
+// ── VALIDATE FORM ──
+function validateForm() {
+  const name = document.getElementById('advisor-name').value.trim();
+  const email = document.getElementById('advisor-email').value.trim();
+  let valid = true;
+
+  document.getElementById('advisor-name').classList.remove('error');
+  document.getElementById('advisor-email').classList.remove('error');
+  document.getElementById('err-name').classList.remove('show');
+  document.getElementById('err-email').classList.remove('show');
+
+  if (!name) {
+    document.getElementById('advisor-name').classList.add('error');
+    document.getElementById('err-name').classList.add('show');
+    valid = false;
+  }
+  if (!isValidEmail(email)) {
+    document.getElementById('advisor-email').classList.add('error');
+    document.getElementById('err-email').classList.add('show');
+    valid = false;
+  }
+  return valid;
+}
+
+// ── START ──
 function startSession() {
+  if (!validateForm()) return;
+
+  advisorName = document.getElementById('advisor-name').value.trim();
+  advisorEmail = document.getElementById('advisor-email').value.trim();
+
+  // Save for convenience
+  localStorage.setItem('nebula_advisor_name', advisorName);
+  localStorage.setItem('nebula_advisor_email', advisorEmail);
+
   client = CLIENTS[Math.floor(Math.random() * CLIENTS.length)];
   geminiHistory = [];
+  transcript = [];
+  msgCount = 0;
+  timeLeft = 180;
+  fbCount = 0;
+  sessionEnded = false;
+  urgentSent = false;
 
-  document.getElementById('screen-select').classList.remove('active');
+  // Reset chat UI
+  const messages = document.getElementById('messages');
+  while (messages.firstChild) {
+    if (messages.firstChild.id === 'typing') break;
+    messages.removeChild(messages.firstChild);
+  }
+  document.getElementById('fb-inner').innerHTML = '<div class="fb-head">Live Feedback</div>';
+  document.getElementById('fb-sidebar').classList.remove('open');
+
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-chat').classList.add('active');
 
   document.getElementById('hdr-avatar').textContent = client.avatar;
@@ -531,12 +637,14 @@ function startSession() {
   document.getElementById('hdr-type').textContent = `${client.type} · Level ${client.level}`;
 
   const input = document.getElementById('msg-input');
+  input.value = '';
   input.disabled = false;
+  input.style.height = 'auto';
   document.getElementById('send-btn').disabled = false;
   input.focus();
 
-  timerInterval = setInterval(tick, 1000);
   updateTimer();
+  timerInterval = setInterval(tick, 1000);
 
   setTimeout(() => {
     showTyping(true);
@@ -548,6 +656,12 @@ function startSession() {
       geminiHistory.push({ role:"model", parts:[{ text: client.opening }] });
     }, 1000);
   }, 500);
+}
+
+// ── RESTART ──
+function restartSession() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-select').classList.add('active');
 }
 
 // ── TIMER ──
@@ -590,7 +704,7 @@ function sendMsg() {
   setTimeout(() => getFeedback(text).catch(console.error), 1500);
 }
 
-// ── CLIENT REPLY via Gemini ──
+// ── CLIENT REPLY ──
 async function getClientReply(advisorText) {
   showTyping(true);
   const elapsed = 180 - timeLeft;
@@ -621,7 +735,7 @@ async function getClientReply(advisorText) {
   }
 }
 
-// ── PER-MESSAGE FEEDBACK via Gemini ──
+// ── PER-MESSAGE FEEDBACK ──
 async function getFeedback(advisorText) {
   fbCount++;
   const num = fbCount;
@@ -684,15 +798,18 @@ async function endSession() {
   addSysMsg('Session ended');
 
   setTimeout(async () => {
-    document.getElementById('screen-chat').classList.remove('active');
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById('screen-end').classList.add('active');
     document.getElementById('end-client-label').textContent =
       `${client.name} · ${client.type}`;
+    // Reset score badge
+    document.getElementById('score-badge').style.display = 'none';
+    document.getElementById('sync-status').style.display = 'none';
     await getFinalFeedback();
   }, 1200);
 }
 
-// ── FINAL FEEDBACK via Gemini ──
+// ── FINAL FEEDBACK + SCORE ──
 async function getFinalFeedback() {
   const fb = document.getElementById('end-feedback');
   fb.innerHTML = `<div class="ef-text" style="color:var(--cream-40);font-style:italic">Generating full analysis…</div>`;
@@ -714,7 +831,10 @@ ${fullTranscript}
 
 Total advisor messages: ${msgCount}
 
-Write a structured analysis with exactly these 4 sections. Use plain text, no markdown:
+Write a structured analysis with EXACTLY these 5 sections. Use plain text only, no markdown, no asterisks:
+
+SCORE
+[A single integer from 0 to 100 reflecting overall performance. Consider: rapport building, handling the client type, specificity of reading, confidence, adaptability. Be fair but honest.]
 
 WHAT WENT WELL
 [2-3 sentences about genuine strengths]
@@ -727,11 +847,25 @@ KEY INSIGHT
 
 TIP FOR NEXT TIME
 [1 concrete actionable thing to try in the next session]` }] }],
-      generationConfig: { maxOutputTokens: 800, temperature: 0.88 }
+      generationConfig: { maxOutputTokens: 900, temperature: 0.88 }
     });
 
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
 
+    // Extract score
+    const scoreMatch = text.match(/SCORE\s*\n\s*(\d+)/i);
+    const score = scoreMatch ? Math.min(100, Math.max(0, parseInt(scoreMatch[1]))) : null;
+
+    // Show score badge
+    if (score !== null) {
+      const badge = document.getElementById('score-badge');
+      const numEl = document.getElementById('score-num');
+      numEl.textContent = score;
+      badge.className = 'score-badge ' + (score >= 75 ? 'high' : score >= 50 ? 'mid' : 'low');
+      badge.style.display = 'flex';
+    }
+
+    // Parse sections
     const sections = [
       { key:"WHAT WENT WELL",   label:"What went well"   },
       { key:"WHAT TO IMPROVE",  label:"What to improve"  },
@@ -740,9 +874,10 @@ TIP FOR NEXT TIME
     ];
 
     let html = '';
+    const allKeys = ['SCORE', ...sections.map(s => s.key)];
     sections.forEach(({ key, label }) => {
-      const escapedKeys = sections.map(s => s.key.replace(/ /g, '\\s+')).join('|');
-      const regex = new RegExp(key.replace(/ /g, '\\s+') + '\\s*\\n([\\s\\S]*?)(?=' + escapedKeys + '|$)', 'i');
+      const escapedAll = allKeys.map(k => k.replace(/ /g, '\\s+')).join('|');
+      const regex = new RegExp(key.replace(/ /g, '\\s+') + '\\s*\\n([\\s\\S]*?)(?=(?:' + escapedAll + ')|$)', 'i');
       const match = text.match(regex);
       const content = match?.[1]?.trim() || '';
       if (content) {
@@ -759,15 +894,55 @@ TIP FOR NEXT TIME
 
     fb.innerHTML = html;
 
-    // Save to localStorage — practice done forever
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      clientName: client.name,
-      clientType: client.type,
-      html
-    }));
+    // Sync to Google Sheets if configured
+    if (score !== null) {
+      await syncToSheets(score, text);
+    }
 
   } catch(e) {
+    console.error("Final feedback error:", e);
     fb.innerHTML = `<div class="ef-section"><div class="ef-text" style="color:var(--coral)">Could not generate analysis. Please check your internet connection.</div></div>`;
+  }
+}
+
+// ── SYNC TO GOOGLE SHEETS ──
+async function syncToSheets(score, analysisText) {
+  if (!SHEETS_URL) return; // Not configured yet
+
+  const syncEl = document.getElementById('sync-status');
+  const syncText = document.getElementById('sync-text');
+  syncEl.style.display = 'flex';
+  syncEl.className = 'sync-status syncing';
+  syncText.textContent = 'Saving results…';
+
+  const payload = {
+    timestamp: new Date().toISOString(),
+    advisorName: advisorName,
+    advisorEmail: advisorEmail,
+    clientId: client.id,
+    clientName: client.name,
+    clientType: client.type,
+    clientLevel: client.level,
+    score: score,
+    msgCount: msgCount,
+    transcript: transcript.join('\n'),
+    analysis: analysisText
+  };
+
+  try {
+    await fetch(SHEETS_URL, {
+      method: "POST",
+      mode: "no-cors", // Google Apps Script requires this
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    // no-cors means we can't read response — assume success
+    syncEl.className = 'sync-status synced';
+    syncText.textContent = 'Results saved';
+  } catch(e) {
+    console.error("Sheets sync error:", e);
+    syncEl.className = 'sync-status error';
+    syncText.textContent = 'Could not save results';
   }
 }
 
