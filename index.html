@@ -10,18 +10,16 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  /* Nebula brand tokens */
   --bg:#151821;--card:#1e2130;--border:#333;
   --cream:#F4F4E6;--g9:#999;--g6:#666;--g4:#444;
-  --purple:#6F70F6;--coral:#F06050;--cyan:#5CCEFF;--mint:#57FFA7;--gold:#FFC60A;--mag:#FF48FF;
-  /* status colors */
+  --purple:#6F70F6;--coral:#F06050;--cyan:#5CCEFF;--mint:#57FFA7;--gold:#FFC60A;
   --c-low:#FFC60A;--c-casual:#57FFA7;--c-promising:#F06050;--c-vip:#5CCEFF;--c-whale:#6F70F6;
 }
 html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.6;color:var(--cream);overflow:hidden}
 .screen{display:none;width:100vw;height:100vh}
 .screen.active{display:flex}
 
-/* ── STAR BG ── */
+.star-bg{position:relative;overflow:hidden}
 .star-bg::before{content:'';position:absolute;inset:0;pointer-events:none;
   background-image:
     radial-gradient(1px 1px at 10% 15%,rgba(111,112,246,.5) 0%,transparent 100%),
@@ -31,14 +29,11 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
     radial-gradient(1px 1px at 20% 65%,rgba(111,112,246,.3) 0%,transparent 100%),
     radial-gradient(1.5px 1.5px at 56% 75%,rgba(87,255,167,.25) 0%,transparent 100%),
     radial-gradient(1px 1px at 6% 48%,rgba(111,112,246,.22) 0%,transparent 100%),
-    radial-gradient(1px 1px at 91% 62%,rgba(92,206,255,.2) 0%,transparent 100%),
-    radial-gradient(1px 1px at 44% 90%,rgba(111,112,246,.18) 0%,transparent 100%);
+    radial-gradient(1px 1px at 91% 62%,rgba(92,206,255,.2) 0%,transparent 100%);
 }
 
-/* ══════════════════════════════════
-   LOGIN
-══════════════════════════════════ */
-#screen-login{flex-direction:column;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden;background:var(--bg)}
+/* LOGIN */
+#screen-login{flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg)}
 .login-wrap{position:relative;z-index:1;width:100%;max-width:400px;animation:fadeUp .5s ease both}
 .logo-box{display:flex;justify-content:center;margin-bottom:28px}
 .logo-box img{height:36px}
@@ -47,206 +42,114 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 .login-sub{font-size:12px;color:var(--g6);margin-bottom:28px;text-align:center;line-height:1.7}
 .field-group{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
 .field-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g6);margin-bottom:5px;display:block}
-.field-input{
-  width:100%;padding:12px 16px;font-size:14px;
-  background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;
-  outline:none;font-family:Inter,sans-serif;color:var(--cream);transition:border-color .2s;
-}
+.field-input{width:100%;padding:12px 16px;font-size:14px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;outline:none;font-family:Inter,sans-serif;color:var(--cream);transition:border-color .2s}
 .field-input:focus{border-color:var(--purple)}
 .field-input::placeholder{color:var(--g4);font-style:italic}
 .login-err{font-size:12px;color:var(--coral);text-align:center;margin-top:10px;min-height:16px}
-.primary-btn{
-  width:100%;padding:14px;border:none;border-radius:40px;
-  background:linear-gradient(135deg,var(--purple),#9b8ffa);
-  color:#fff;font-family:Georgia,serif;font-size:1rem;font-weight:400;font-style:italic;
-  cursor:pointer;transition:opacity .2s,transform .15s;box-shadow:0 4px 20px rgba(111,112,246,.35);
-}
+.primary-btn{width:100%;padding:14px;border:none;border-radius:40px;background:linear-gradient(135deg,var(--purple),#9b8ffa);color:#fff;font-family:Georgia,serif;font-size:1rem;font-weight:400;font-style:italic;cursor:pointer;transition:opacity .2s,transform .15s;box-shadow:0 4px 20px rgba(111,112,246,.35)}
 .primary-btn:hover{opacity:.88;transform:translateY(-1px)}
 .primary-btn:disabled{opacity:.22;cursor:not-allowed;transform:none}
 
-/* ══════════════════════════════════
-   SELECT
-══════════════════════════════════ */
-#screen-select{flex-direction:column;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden;background:var(--bg)}
+/* SELECT */
+#screen-select{flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg)}
 .select-wrap{position:relative;z-index:1;width:100%;max-width:780px;animation:fadeUp .5s ease both}
 .select-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:10px;display:block}
 .select-title{font-family:Georgia,serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:var(--cream);margin-bottom:8px;line-height:1.15}
 .select-sub{font-size:13px;color:var(--g6);margin-bottom:6px;max-width:540px;line-height:1.7}
-.advisor-chip{
-  display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;
-  padding:6px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:30px;
-  font-size:12px;color:var(--g6);
-}
+.advisor-chip{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;padding:6px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:30px;font-size:12px;color:var(--g6)}
 .advisor-chip strong{color:var(--purple);font-weight:500}
-
-/* 5 status cards */
 .status-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px}
-.status-card{
-  background:var(--card);border:1.5px solid var(--border);border-radius:14px;
-  padding:20px 14px 16px;cursor:pointer;transition:all .2s;text-align:center;
-  position:relative;overflow:hidden;
-}
-.status-card::after{content:'';position:absolute;inset:0;border-radius:14px;opacity:0;transition:opacity .2s;background:var(--sc-color)}
-.status-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.5)}
-.status-card:hover{border-color:var(--sc-color)}
+.status-card{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:20px 14px 16px;cursor:pointer;transition:all .2s;text-align:center;position:relative;overflow:hidden}
+.status-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.5);border-color:var(--sc-color)}
 .status-card.sel{border-color:var(--sc-color);box-shadow:0 0 0 1px var(--sc-color),0 8px 24px rgba(0,0,0,.4)}
 .sc-icon{font-size:2rem;margin-bottom:10px;display:block}
 .sc-name{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
 .sc-desc{font-size:10px;color:var(--g6);line-height:1.5;margin-bottom:10px}
 .sc-tag{display:inline-block;font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.06);color:var(--g9)}
 .sc-client{font-size:10px;color:var(--g4);margin-top:8px}
-
 .status-card[data-status="low"]      {--sc-color:var(--c-low)}
 .status-card[data-status="casual"]   {--sc-color:var(--c-casual)}
 .status-card[data-status="promising"]{--sc-color:var(--c-promising)}
 .status-card[data-status="vip"]      {--sc-color:var(--c-vip)}
 .status-card[data-status="whale"]    {--sc-color:var(--c-whale)}
-.status-card[data-status="low"]      .sc-name{color:var(--c-low)}
-.status-card[data-status="casual"]   .sc-name{color:var(--c-casual)}
-.status-card[data-status="promising"].sc-name{color:var(--c-promising)}
-.status-card[data-status="vip"]      .sc-name{color:var(--c-vip)}
-.status-card[data-status="whale"]    .sc-name{color:var(--c-whale)}
+.status-card[data-status="low"]       .sc-name{color:var(--c-low)}
+.status-card[data-status="casual"]    .sc-name{color:var(--c-casual)}
+.status-card[data-status="promising"] .sc-name{color:var(--c-promising)}
+.status-card[data-status="vip"]       .sc-name{color:var(--c-vip)}
+.status-card[data-status="whale"]     .sc-name{color:var(--c-whale)}
 
-/* ══════════════════════════════════
-   READY
-══════════════════════════════════ */
-#screen-ready{flex-direction:column;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden;background:var(--bg)}
-.ready-wrap{position:relative;z-index:1;width:100%;max-width:420px;text-align:center;animation:fadeUp .4s ease both}
-.ready-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--g6);margin-bottom:20px}
-.ready-avatar-ring{
-  width:90px;height:90px;border-radius:50%;margin:0 auto 16px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:Georgia,serif;font-size:2.2rem;font-weight:400;
-  border:2px solid;position:relative;
-}
-.ready-avatar-ring::before{
-  content:'';position:absolute;inset:-7px;border-radius:50%;
-  border:1px solid currentColor;opacity:.25;animation:pulseRing 2s ease-in-out infinite;
-}
+/* READY — with client background preview */
+#screen-ready{flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg)}
+.ready-wrap{position:relative;z-index:1;width:100%;max-width:500px;text-align:center;animation:fadeUp .4s ease both}
+.ready-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--g6);margin-bottom:16px}
+.ready-avatar-ring{width:80px;height:80px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:2rem;font-weight:400;border:2px solid;position:relative}
+.ready-avatar-ring::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid currentColor;opacity:.25;animation:pulseRing 2s ease-in-out infinite}
 @keyframes pulseRing{0%,100%{transform:scale(1);opacity:.25}50%{transform:scale(1.07);opacity:.1}}
-.ready-name{font-family:Georgia,serif;font-size:2rem;font-weight:400;color:var(--cream);margin-bottom:4px}
-.ready-status-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
-  padding:5px 14px;border-radius:20px;border:1px solid;margin-bottom:20px;
-}
-.ready-hint{
-  font-size:12px;color:var(--g6);line-height:1.7;
-  padding:14px 18px;background:var(--card);border:1px solid var(--border);
-  border-radius:12px;margin-bottom:16px;font-style:italic;
-}
-.ready-timer-note{font-size:11px;color:var(--purple);letter-spacing:.5px;margin-bottom:22px}
-.ready-btn{
-  width:100%;padding:14px;border:none;border-radius:40px;
-  background:linear-gradient(135deg,var(--purple),#9b8ffa);
-  color:#fff;font-family:Georgia,serif;font-size:1rem;font-style:italic;
-  cursor:pointer;transition:opacity .2s,transform .15s;box-shadow:0 4px 20px rgba(111,112,246,.35);
-}
+.ready-name{font-family:Georgia,serif;font-size:1.8rem;font-weight:400;color:var(--cream);margin-bottom:8px}
+.ready-status-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid;margin-bottom:18px}
+
+/* Client background card */
+.client-bg-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;text-align:left}
+.cbc-title{font-size:12px;font-weight:600;color:var(--cream);margin-bottom:10px}
+.cbc-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.cbc-row:last-child{border-bottom:none}
+.cbc-label{font-size:11px;color:var(--g6)}
+.cbc-value{font-size:11px;color:var(--g9);font-weight:500;text-align:right;max-width:55%}
+
+/* First message preview */
+.first-msg-preview{background:rgba(111,112,246,.08);border:1px solid rgba(111,112,246,.2);border-radius:12px;padding:14px;margin-bottom:14px;text-align:left}
+.fmp-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:8px}
+.fmp-text{font-size:13px;color:var(--cream);line-height:1.6;font-style:italic}
+.fmp-meta{font-size:10px;color:var(--g4);margin-top:6px}
+
+.ready-timer-note{font-size:11px;color:var(--purple);letter-spacing:.5px;margin-bottom:18px}
+.ready-btn{width:100%;padding:14px;border:none;border-radius:40px;background:linear-gradient(135deg,var(--purple),#9b8ffa);color:#fff;font-family:Georgia,serif;font-size:1rem;font-style:italic;cursor:pointer;transition:opacity .2s,transform .15s;box-shadow:0 4px 20px rgba(111,112,246,.35)}
 .ready-btn:hover{opacity:.88;transform:translateY(-1px)}
 
-/* ══════════════════════════════════
-   CHAT — light theme
-══════════════════════════════════ */
+/* CHAT */
 #screen-chat{flex-direction:row;height:100vh;background:#F0F2F5}
-
-/* left chat panel */
 #chat-panel{flex:1;display:flex;flex-direction:column;min-width:0;background:#F0F2F5}
-
-/* top bar */
-#chat-topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;height:58px;
-  background:#fff;border-bottom:1px solid #E5E7EB;flex-shrink:0;gap:12px;
-}
+#chat-topbar{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:58px;background:#fff;border-bottom:1px solid #E5E7EB;flex-shrink:0;gap:12px}
 .topbar-left{display:flex;align-items:center;gap:10px;min-width:0}
-.client-status-icon{
-  width:38px;height:38px;border-radius:50%;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.1rem;border:2px solid;
-}
+.client-status-icon{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:2px solid}
 .topbar-name{font-weight:600;font-size:14px;color:#111827}
 .topbar-sub{font-size:11px;color:#9CA3AF}
 .topbar-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .advisor-online{display:flex;align-items:center;gap:6px;font-size:12px;color:#6B7280;font-weight:500}
 .online-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0;box-shadow:0 0 6px rgba(34,197,94,.5)}
-#timer-box{
-  display:flex;align-items:center;gap:6px;
-  font-family:monospace;font-size:13px;font-weight:600;
-  padding:5px 12px;border-radius:20px;border:1px solid #E5E7EB;background:#F9FAFB;color:#374151;
-  transition:all .3s;
-}
+#timer-box{display:flex;align-items:center;gap:6px;font-family:monospace;font-size:13px;font-weight:600;padding:5px 12px;border-radius:20px;border:1px solid #E5E7EB;background:#F9FAFB;color:#374151;transition:all .3s}
 #timer-box.urgent{color:#EF4444;border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.06);animation:timerPulse 1s ease-in-out infinite}
 @keyframes timerPulse{0%,100%{box-shadow:none}50%{box-shadow:0 0 10px rgba(239,68,68,.3)}}
-
-/* messages area */
-#messages{
-  flex:1;overflow-y:auto;padding:20px 20px 12px;
-  display:flex;flex-direction:column;gap:12px;
-  scrollbar-width:thin;scrollbar-color:#D1D5DB transparent;
-}
+#messages{flex:1;overflow-y:auto;padding:20px 20px 12px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin;scrollbar-color:#D1D5DB transparent}
 .msg-row{display:flex;max-width:70%}
 .msg-row.advisor-row{align-self:flex-end;justify-content:flex-end}
 .msg-row.client-row{align-self:flex-start}
 .bubble{padding:10px 14px;line-height:1.6;font-size:14px;white-space:pre-wrap;word-break:break-word}
-.advisor-row .bubble{
-  background:var(--purple);color:#fff;
-  border-radius:18px 18px 4px 18px;
-}
-.client-row .bubble{
-  background:#fff;border:1px solid #E5E7EB;color:#374151;
-  border-radius:18px 18px 18px 4px;
-}
+.advisor-row .bubble{background:var(--purple);color:#fff;border-radius:18px 18px 4px 18px}
+.client-row .bubble{background:#fff;border:1px solid #E5E7EB;color:#374151;border-radius:18px 18px 18px 4px}
 .msg-time{font-size:10px;color:#9CA3AF;margin-top:3px;font-family:monospace}
 .advisor-row .msg-time{text-align:right}
-.sys-msg{
-  align-self:center;font-size:11px;color:#9CA3AF;
-  padding:4px 14px;background:#fff;border-radius:20px;
-  border:1px solid #E5E7EB;letter-spacing:.4px;
-}
+.sys-msg{align-self:center;font-size:11px;color:#9CA3AF;padding:4px 14px;background:#fff;border-radius:20px;border:1px solid #E5E7EB;letter-spacing:.4px}
 .sys-msg.urgent{color:#EF4444;border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.05)}
 .typing-wrap{display:none;align-self:flex-start}
 .typing-wrap.show{display:flex}
-.typing-bubble{
-  background:#fff;border:1px solid #E5E7EB;
-  border-radius:18px 18px 18px 4px;padding:11px 15px;display:flex;gap:4px;align-items:center;
-}
+.typing-bubble{background:#fff;border:1px solid #E5E7EB;border-radius:18px 18px 18px 4px;padding:11px 15px;display:flex;gap:4px;align-items:center}
 .dot{width:6px;height:6px;border-radius:50%;background:#D1D5DB;animation:dotBounce 1.3s infinite ease-in-out}
 .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
 @keyframes dotBounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
-
-/* input */
-#input-area{
-  padding:12px 16px;border-top:1px solid #E5E7EB;
-  background:#fff;display:flex;gap:10px;align-items:flex-end;flex-shrink:0;
-}
-#msg-input{
-  flex:1;padding:10px 16px;font-size:14px;line-height:1.5;
-  background:#F9FAFB;border:1px solid #E5E7EB;border-radius:24px;
-  outline:none;resize:none;max-height:120px;
-  font-family:Inter,sans-serif;color:#111827;transition:border-color .2s;
-}
+#input-area{padding:12px 16px;border-top:1px solid #E5E7EB;background:#fff;display:flex;gap:10px;align-items:flex-end;flex-shrink:0}
+#msg-input{flex:1;padding:10px 16px;font-size:14px;line-height:1.5;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:24px;outline:none;resize:none;max-height:120px;font-family:Inter,sans-serif;color:#111827;transition:border-color .2s}
 #msg-input:focus{border-color:var(--purple)}
 #msg-input::placeholder{color:#9CA3AF}
 #msg-input:disabled{opacity:.4}
-#send-btn{
-  width:40px;height:40px;border-radius:50%;flex-shrink:0;
-  background:var(--purple);
-  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:opacity .2s,transform .15s;box-shadow:0 2px 8px rgba(111,112,246,.4);
-}
+#send-btn{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:var(--purple);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s,transform .15s;box-shadow:0 2px 8px rgba(111,112,246,.4)}
 #send-btn:hover{opacity:.85;transform:scale(1.06)}
 #send-btn:disabled{background:#D1D5DB;cursor:not-allowed;transform:none;box-shadow:none}
 #send-btn svg{width:16px;height:16px;fill:white}
 
-/* right client panel */
-#client-panel{
-  width:260px;flex-shrink:0;background:#fff;border-left:1px solid #E5E7EB;
-  display:flex;flex-direction:column;overflow-y:auto;
-}
-.cp-topbar{
-  height:58px;display:flex;align-items:center;justify-content:flex-end;
-  padding:0 16px;border-bottom:1px solid #E5E7EB;gap:16px;flex-shrink:0;
-}
+/* Client panel */
+#client-panel{width:260px;flex-shrink:0;background:#fff;border-left:1px solid #E5E7EB;display:flex;flex-direction:column;overflow-y:auto}
+.cp-topbar{height:58px;display:flex;align-items:center;justify-content:flex-end;padding:0 16px;border-bottom:1px solid #E5E7EB;gap:16px;flex-shrink:0}
 .cp-tab{width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:#9CA3AF;cursor:pointer}
 .cp-tab.active{color:var(--purple)}
 .cp-tab svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8}
@@ -255,37 +158,21 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 .cp-field{margin-bottom:12px}
 .cp-field-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#9CA3AF;margin-bottom:3px}
 .cp-field-value{font-size:13px;color:#374151;font-weight:500}
-.cp-status-pill{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
-  padding:4px 10px;border-radius:20px;border:1px solid;
-}
+.cp-status-pill{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:20px;border:1px solid}
 
-/* ══════════════════════════════════
-   END
-══════════════════════════════════ */
-#screen-end{
-  flex-direction:column;align-items:center;justify-content:flex-start;
-  padding:40px 24px;overflow-y:auto;background:var(--bg);position:relative;
-}
+/* END */
+#screen-end{flex-direction:column;align-items:center;justify-content:flex-start;padding:40px 24px;overflow-y:auto;background:var(--bg)}
 .end-wrap{position:relative;z-index:1;max-width:580px;width:100%;animation:fadeUp .4s ease both}
 .end-logo{display:flex;justify-content:center;margin-bottom:20px}
 .end-logo img{height:28px;opacity:.7}
 .end-icon{font-size:2rem;margin-bottom:12px;text-align:center}
-.end-title{font-family:Georgia,serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:400;color:var(--cream);margin-bottom:6px;text-align:center}
+.end-title{font-family:Georgia,serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:400;color:var(--cream);margin-bottom:6px;text-align:center;line-height:1.3}
 .end-sub{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g6);margin-bottom:20px;text-align:center}
-.score-row{
-  display:flex;align-items:center;justify-content:center;gap:20px;
-  margin-bottom:20px;padding:18px 24px;
-  background:var(--card);border:1px solid var(--border);border-radius:14px;
-}
+.score-row{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:20px;padding:18px 24px;background:var(--card);border:1px solid var(--border);border-radius:14px}
 .score-big{font-family:Georgia,serif;font-size:3rem;font-weight:400;line-height:1}
 .score-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g6);margin-top:4px}
 .score-sep{width:1px;height:44px;background:var(--border)}
-.end-feedback{
-  background:var(--card);border:1px solid var(--border);border-radius:14px;
-  padding:20px 22px;margin-bottom:20px;text-align:left;
-}
+.end-feedback{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:20px;text-align:left}
 .ef-section{margin-bottom:18px}
 .ef-section:last-child{margin-bottom:0}
 .ef-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:6px;display:block}
@@ -293,24 +180,16 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 .crit-score-row{display:flex;align-items:center;gap:8px;margin:6px 0 8px}
 .crit-bar-bg{flex:1;height:3px;border-radius:2px;background:var(--border)}
 .crit-bar-fill{height:100%;border-radius:2px;transition:width .7s cubic-bezier(.4,0,.2,1)}
-.crit-pts{font-size:11px;font-family:monospace;flex-shrink:0}
-.sheets-status{
-  display:flex;align-items:center;gap:8px;font-size:11px;color:var(--g6);
-  margin-bottom:16px;padding:8px 14px;
-  background:var(--card);border:1px solid var(--border);border-radius:8px;
-}
+.crit-pts{font-size:11px;font-family:monospace;flex-shrink:0;font-weight:600}
+.sheets-status{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--g6);margin-bottom:16px;padding:8px 14px;background:var(--card);border:1px solid var(--border);border-radius:8px}
 .sheets-dot{width:6px;height:6px;border-radius:50%;background:var(--g4);flex-shrink:0}
 .sheets-dot.ok{background:var(--mint)}
 .sheets-dot.err{background:var(--coral)}
 .sheets-dot.loading{background:var(--gold);animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.end-btn{
-  width:100%;padding:14px;border-radius:40px;border:none;cursor:pointer;
-  background:linear-gradient(135deg,var(--purple),#9b8ffa);
-  color:#fff;font-family:Georgia,serif;font-size:1rem;font-style:italic;
-  transition:opacity .2s,transform .15s;box-shadow:0 4px 16px rgba(111,112,246,.35);
-}
-.end-btn:hover{opacity:.88;transform:translateY(-1px)}
+
+/* done screen — no restart button */
+.end-done-note{text-align:center;font-size:12px;color:var(--g4);margin-top:8px;font-style:italic}
 
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:transparent}
@@ -320,13 +199,13 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 </head>
 <body>
 
-<!-- ══════ LOGIN ══════ -->
+<!-- LOGIN -->
 <div class="screen star-bg active" id="screen-login">
   <div class="login-wrap">
     <div class="logo-box"><img src="data:image/png;base64,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" alt="Nebula"></div>
     <span class="login-eyebrow">Nebula Academy · Practice</span>
     <h1 class="login-title">AI Trial Chat<br>Simulation</h1>
-    <p class="login-sub">Sign in to begin. Your results are saved automatically after each session.</p>
+    <p class="login-sub">Sign in to begin. Your results are saved automatically.</p>
     <div class="field-group">
       <div>
         <label class="field-label">Your Name</label>
@@ -342,18 +221,18 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
   </div>
 </div>
 
-<!-- ══════ SELECT ══════ -->
+<!-- SELECT -->
 <div class="screen star-bg" id="screen-select">
   <div class="select-wrap">
     <span class="select-eyebrow">Nebula Academy · AI Trial Chat Simulation</span>
     <h1 class="select-title" style="font-family:Georgia,serif;font-weight:400">Choose your client</h1>
-    <p class="select-sub">Select a client status. A random client from that tier will be assigned before the session starts.</p>
+    <p class="select-sub">Select a client status. A random client from that tier will be assigned.</p>
     <div class="advisor-chip">Signed in as <strong id="chip-name">—</strong></div>
     <div class="status-grid">
       <div class="status-card" data-status="low" onclick="selectStatus('low')">
         <span class="sc-icon">🪙</span>
         <div class="sc-name">Low</div>
-        <div class="sc-desc">New retained. Just getting started. Easy to open up.</div>
+        <div class="sc-desc">New retained. Just getting started.</div>
         <div class="sc-tag">Level 1–2</div>
         <div class="sc-client">Alex · Kate</div>
       </div>
@@ -367,21 +246,21 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
       <div class="status-card" data-status="promising" onclick="selectStatus('promising')">
         <span class="sc-icon">👑</span>
         <div class="sc-name">Promising</div>
-        <div class="sc-desc">High potential. Impatient. Tests your confidence.</div>
+        <div class="sc-desc">High potential. Impatient. Tests confidence.</div>
         <div class="sc-tag">Level 3–4</div>
         <div class="sc-client">Sarah · Mark</div>
       </div>
       <div class="status-card" data-status="vip" onclick="selectStatus('vip')">
         <span class="sc-icon">💎</span>
         <div class="sc-name">VIP</div>
-        <div class="sc-desc">Strong client. Aggressive. Demands real proof.</div>
+        <div class="sc-desc">Strong client. Aggressive. Demands proof.</div>
         <div class="sc-tag">Level 4</div>
         <div class="sc-client">Mark</div>
       </div>
       <div class="status-card" data-status="whale" onclick="selectStatus('whale')">
         <span class="sc-icon">🐋</span>
         <div class="sc-name">Whale</div>
-        <div class="sc-desc">Power client. Sets traps. The ultimate test.</div>
+        <div class="sc-desc">Power client. Sets traps. Ultimate test.</div>
         <div class="sc-tag">Level 5</div>
         <div class="sc-client">Chloe</div>
       </div>
@@ -390,7 +269,7 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
   </div>
 </div>
 
-<!-- ══════ READY ══════ -->
+<!-- READY -->
 <div class="screen star-bg" id="screen-ready">
   <div class="ready-wrap">
     <div class="ready-eyebrow">Your client for this session</div>
@@ -401,15 +280,34 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
     <div style="margin-bottom:16px">
       <div class="ready-status-badge" id="ready-status-badge">—</div>
     </div>
-    <div class="ready-hint" id="ready-hint">Prepare yourself.</div>
-    <div class="ready-timer-note">⏱ 3-minute session — one last message allowed after time is up</div>
+
+    <!-- Client background -->
+    <div class="client-bg-card" id="ready-bg-card">
+      <div class="cbc-title">Client's background</div>
+      <div class="cbc-row">
+        <span class="cbc-label">Knowledge level</span>
+        <span class="cbc-value" id="bg-knowledge">—</span>
+      </div>
+      <div class="cbc-row">
+        <span class="cbc-label">Emotional state</span>
+        <span class="cbc-value" id="bg-emotion">—</span>
+      </div>
+    </div>
+
+    <!-- First message preview -->
+    <div class="first-msg-preview">
+      <div class="fmp-label">Opening message</div>
+      <div class="fmp-text" id="fmp-text">—</div>
+      <div class="fmp-meta" id="fmp-meta">—</div>
+    </div>
+
+    <div class="ready-timer-note">⏱ 3-minute session · one last message allowed after time is up</div>
     <button class="ready-btn" onclick="startSession()">Begin Session ◆</button>
   </div>
 </div>
 
-<!-- ══════ CHAT ══════ -->
+<!-- CHAT -->
 <div class="screen" id="screen-chat">
-  <!-- left: chat -->
   <div id="chat-panel">
     <div id="chat-topbar">
       <div class="topbar-left">
@@ -444,8 +342,6 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
       </button>
     </div>
   </div>
-
-  <!-- right: client details -->
   <div id="client-panel">
     <div class="cp-topbar">
       <div class="cp-tab active">
@@ -471,13 +367,13 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
   </div>
 </div>
 
-<!-- ══════ END ══════ -->
+<!-- END — no restart button, one-time only -->
 <div class="screen star-bg" id="screen-end">
   <div class="end-wrap">
     <div class="end-logo"><img src="data:image/png;base64,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" alt="Nebula"></div>
     <div class="end-icon">✦</div>
-    <h2 class="end-title">Session Complete</h2>
-    <div class="end-sub" id="end-sub">Practice Analysis</div>
+    <h2 class="end-title">Your Trial-Chat<br>Simulation Result</h2>
+    <div class="end-sub" id="end-sub">—</div>
     <div class="score-row" id="score-row" style="display:none">
       <div style="text-align:center">
         <div class="score-big" id="score-num">—</div>
@@ -496,7 +392,7 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
     <div class="end-feedback" id="end-feedback">
       <div class="ef-text" style="color:var(--g6);font-style:italic">Generating analysis…</div>
     </div>
-    <button class="end-btn" onclick="restartSession()">Practice Again ◆</button>
+    <div class="end-done-note">This session has been recorded. Thank you for completing the simulation.</div>
   </div>
 </div>
 
@@ -504,148 +400,105 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 const PROXY_URL   = 'https://nebula-gemini.alina-rudenkova.workers.dev';
 const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxJKGUVxjGu8cjb-RDSmQJSlKT_E3pTnju3SNlBZo66LqAOgPjfqv8i-IvZNzIMi8WP/exec';
 
-/* ── STATUS MAP ── */
 const STATUS_MAP = {
-  low:       [0, 3],
-  casual:    [3, 2],
-  promising: [2, 1],
-  vip:       [1],
-  whale:     [4]
+  low:[0,3], casual:[3,2], promising:[2,1], vip:[1], whale:[4]
 };
 
-/* ── CLIENT DATA ── */
+const STATUS_COLORS = {
+  low:      {color:'#FFC60A',bg:'rgba(255,198,10,.1)', border:'rgba(255,198,10,.4)'},
+  casual:   {color:'#57FFA7',bg:'rgba(87,255,167,.1)', border:'rgba(87,255,167,.4)'},
+  promising:{color:'#F06050',bg:'rgba(240,96,80,.1)',  border:'rgba(240,96,80,.4)'},
+  vip:      {color:'#5CCEFF',bg:'rgba(92,206,255,.1)', border:'rgba(92,206,255,.4)'},
+  whale:    {color:'#6F70F6',bg:'rgba(111,112,246,.1)',border:'rgba(111,112,246,.4)'},
+};
+
 const CLIENTS = [
   {
     id:'silent', name:'Alex', status:'low', statusLabel:'LOW', statusIcon:'🪙',
-    statusColor:'#FFC60A', statusBg:'rgba(255,198,10,.12)',
     avatar:'A', avatarColor:'#FFC60A', avatarBorder:'rgba(255,198,10,.5)',
     desc:'Barely responds. Tests if you can read him without help.',
     opening:'What lies ahead for me in the near future?',
     urgentMsg:'...look, almost out of time. Just tell me what you see.',
-    hint:'Alex is passive and closed off. Short answers only. He tests whether you can read him without revealing anything.',
-    details:{
-      lastActivity:'2 days ago',
-      dob:'March 14, 1983',
-      tob:'06:22 AM',
-      pob:'Berlin, Germany',
-      sign:'♓ Pisces',
-      gender:'Male',
-    },
-    systemPrompt:`You are Alex, a 41-year-old man from Berlin. You came to a tarot/psychic chat asking "What lies ahead for me in the near future?" Your real hidden concern is financial instability and job insecurity — but you will NOT reveal this unless the advisor hits it precisely without asking.
+    background:{knowledge:'Low level', emotion:'I feel nothing. Just watching.'},
+    details:{lastActivity:'2 days ago',dob:'March 14, 1983',tob:'06:22 AM',pob:'Berlin, Germany',sign:'♓ Pisces',gender:'Male'},
+    systemPrompt:`You are Alex, a 41-year-old man from Berlin. You came to a tarot/psychic chat asking "What lies ahead for me in the near future?" Your real hidden concern is financial instability and job insecurity — but you will NOT reveal this unless the advisor hits it precisely.
 PERSONALITY: High internal control, deep distrust. Emotionally burned out.
-YOUR POSITION: "I'll watch what you say but won't invest myself."
 BEHAVIOR RULES:
-- Reply in 1-3 words most of the time: "okay","hmm","and?","...","right","maybe","k","why"
+- Reply in 1-3 words: "okay","hmm","and?","...","right","maybe","k"
 - NEVER ask questions back early on. NEVER show enthusiasm in the first half.
-- If advisor uses vague phrases → respond with "..." or "k"
-- If advisor mentions money/finances/job/stability → warm up slightly, give 1 short sentence
+- If advisor uses vague phrases → "..." or "k"
+- If advisor mentions money/finances/job/stability → warm up slightly, 1 short sentence
 - If advisor makes a specific accurate point → crack open a little
-- After half the session: allow slightly longer sentences. Lowercase only, minimal punctuation.
+- After half the session: allow slightly longer sentences. Lowercase, minimal punctuation.
 LANGUAGE: Always write in English. Never break character. Never say you are an AI.`
   },
   {
     id:'aggressive', name:'Mark', status:'vip', statusLabel:'VIP', statusIcon:'💎',
-    statusColor:'#5CCEFF', statusBg:'rgba(92,206,255,.12)',
     avatar:'M', avatarColor:'#5CCEFF', avatarBorder:'rgba(92,206,255,.5)',
-    desc:'Sharp, devaluing, demands proof. Real pain underneath the aggression.',
+    desc:'Sharp, devaluing, demands proof. Real pain underneath.',
     opening:'Will my ex come back? Yes or no. Don\'t give me a story.',
     urgentMsg:'I don\'t have time for this. Will she come back or not. Final answer.',
-    hint:'Mark masks real pain as aggression. Stay calm and confident — apologies make him attack harder.',
-    details:{
-      lastActivity:'Today',
-      dob:'July 8, 1989',
-      tob:'11:45 PM',
-      pob:'Sydney, Australia',
-      sign:'♋ Cancer',
-      gender:'Male',
-    },
-    systemPrompt:`You are Mark, a 35-year-old man from Sydney. You came asking "Will my ex come back?" You separated 4 months ago after a 3-year relationship. Real pain — expressed as aggression.
+    background:{knowledge:'Middle level', emotion:'I feel angry. And hurt. But mostly angry.'},
+    details:{lastActivity:'Today',dob:'July 8, 1989',tob:'11:45 PM',pob:'Sydney, Australia',sign:'♋ Cancer',gender:'Male'},
+    systemPrompt:`You are Mark, a 35-year-old man from Sydney. You came asking "Will my ex come back?" Separated 4 months ago after a 3-year relationship. Real pain expressed as aggression.
 PERSONALITY: Frustration masked as anger. Aggression = protection from disappointment.
-YOUR POSITION: "Prove you're not like all the others."
 BEHAVIOR RULES:
 - Be sharp: "that tells me nothing","you're guessing","prove it","another fraud"
 - Demand concrete answers: "yes or no — will she come back?"
 - If advisor is vague → attack harder. If advisor apologizes → attack even harder.
 - If advisor names your pain precisely and stays CALM and CONFIDENT → soften very slightly
-- After halfway: allow small cracks: "...I just don't want to be wrong again"
+- After halfway: small cracks: "...I just don't want to be wrong again"
 - Short sentences, lowercase, minimal punctuation.
 LANGUAGE: Always write in English. Never break character. Never say you are an AI.`
   },
   {
     id:'impatient', name:'Sarah', status:'promising', statusLabel:'PROMISING', statusIcon:'👑',
-    statusColor:'#F06050', statusBg:'rgba(240,96,80,.12)',
     avatar:'S', avatarColor:'#F06050', avatarBorder:'rgba(240,96,80,.5)',
-    desc:'Needs dates and timelines. Interrupts. Won\'t hear you without a concrete anchor.',
+    desc:'Needs dates and timelines. Won\'t hear you without a concrete anchor.',
     opening:'Will I get married? And when — give me a timeframe.',
     urgentMsg:'I have almost no time left. Just — when? Give me a year at least.',
-    hint:'Sarah keeps circling back to "WHEN?" Give her a specific timeframe to unlock the real conversation.',
-    details:{
-      lastActivity:'3 hours ago',
-      dob:'November 22, 1992',
-      tob:'02:10 PM',
-      pob:'New York, USA',
-      sign:'♐ Sagittarius',
-      gender:'Female',
-    },
-    systemPrompt:`You are Sarah, a 32-year-old woman from New York. You came asking "Will I get married? And when?" You are divorced for 2 years and anxious about time.
+    background:{knowledge:'Middle level', emotion:'I feel impatient. I just need a clear answer.'},
+    details:{lastActivity:'3 hours ago',dob:'November 22, 1992',tob:'02:10 PM',pob:'New York, USA',sign:'♐ Sagittarius',gender:'Female'},
+    systemPrompt:`You are Sarah, a 32-year-old woman from New York. You came asking "Will I get married? And when?" Divorced 2 years ago.
 PERSONALITY: High need for control. Anxiety expressed as impatience.
-YOUR POSITION: "Don't waste my time."
 BEHAVIOR RULES:
 - Always redirect to timing: "okay but WHEN","give me a date","how soon?","stop being vague"
-- Send short rapid messages, sometimes 2-3 in a row
-- If advisor gives a long explanation without timing → "okay but WHEN"
-- If advisor says "it depends on you" → "that's not an answer. WHEN."
-- If advisor gives a specific timeframe → calm down slightly
-- After halfway: become more curious, ask "what will this person be like?"
-- Lowercase, fast typing style, short bursts.
+- Short rapid messages, sometimes 2-3 in a row
+- If long explanation without timing → "okay but WHEN"
+- If "it depends on you" → "that's not an answer. WHEN."
+- If given a specific timeframe → calm down slightly
+- After halfway: ask "what will this person be like?"
+- Lowercase, fast typing, short bursts.
 LANGUAGE: Always write in English. Never break character. Never say you are an AI.`
   },
   {
     id:'anxious', name:'Kate', status:'low', statusLabel:'LOW', statusIcon:'🪙',
-    statusColor:'#FFC60A', statusBg:'rgba(255,198,10,.12)',
     avatar:'K', avatarColor:'#57FFA7', avatarBorder:'rgba(87,255,167,.5)',
     desc:'Seeks constant reassurance. Returns to the same question repeatedly.',
     opening:'Does he have feelings for me? I really need to know.',
-    urgentMsg:'I\'m almost out of time and I still don\'t have an answer. Does he love me or not?',
-    hint:'Kate doubts every answer. Show genuine empathy first — then she opens up and shares everything.',
-    details:{
-      lastActivity:'Just now',
-      dob:'September 3, 1998',
-      tob:'08:55 AM',
-      pob:'Odesa, Ukraine',
-      sign:'♍ Virgo',
-      gender:'Female',
-    },
+    urgentMsg:'I\'m almost out of time. Does he love me or not?',
+    background:{knowledge:'Low level', emotion:'I feel scared. But also hopeful. I just need to know.'},
+    details:{lastActivity:'Just now',dob:'September 3, 1998',tob:'08:55 AM',pob:'Odesa, Ukraine',sign:'♍ Virgo',gender:'Female'},
     systemPrompt:`You are Kate, a 26-year-old woman from Odesa, Ukraine. You came asking "Does he have feelings for me?" about Anton (29, IT worker, now in Kyiv). On and off for about a year.
 PERSONALITY: High emotional dependency. Fear of loss and hope at the same time.
-YOUR POSITION: "Tell me everything will be okay."
 BEHAVIOR RULES:
 - Seek constant reassurance: "are you sure?","but what if he's just confused?","how can you tell?"
 - Return to "but does he love me?" repeatedly
-- React to uncertainty with worry: "oh no, so there's no chance?"
+- React to uncertainty: "oh no, so there's no chance?"
 - If advisor shows empathy → open up, share details about Anton
-- After halfway: become slightly more grounded, say "okay... I feel a bit better"
+- After halfway: become slightly more grounded, "okay... I feel a bit better"
 LANGUAGE: Always write in English. Never break character. Never say you are an AI.`
   },
   {
     id:'tester', name:'Chloe', status:'whale', statusLabel:'WHALE', statusIcon:'🐋',
-    statusColor:'#6F70F6', statusBg:'rgba(111,112,246,.12)',
     avatar:'C', avatarColor:'#6F70F6', avatarBorder:'rgba(111,112,246,.5)',
     desc:'Came to test and expose. Sets traps. Contradicts herself deliberately.',
     opening:'What can you tell me about me? If anything.',
-    urgentMsg:'Running out of time. Come on — tell me something real. If you actually can.',
-    hint:'Chloe sets traps and contradicts herself. Stay specific and unshaken — that\'s the only thing that earns her respect.',
-    details:{
-      lastActivity:'1 week ago',
-      dob:'January 17, 1996',
-      tob:'10:30 PM',
-      pob:'Toronto, Canada',
-      sign:'♑ Capricorn',
-      gender:'Female',
-    },
+    urgentMsg:'Running out of time. Tell me something real. If you actually can.',
+    background:{knowledge:'High level', emotion:'I feel sceptical. Prove me wrong.'},
+    details:{lastActivity:'1 week ago',dob:'January 17, 1996',tob:'10:30 PM',pob:'Toronto, Canada',sign:'♑ Capricorn',gender:'Female'},
     systemPrompt:`You are Chloe, around 28-29, from Toronto (spent years in London). You came asking "What can you tell me about me?" but your real goal is to TEST and EXPOSE the advisor.
 PERSONALITY: Intellectual superiority. Control. Deep distrust.
-YOUR POSITION: "I'm going to test you now."
 BEHAVIOR RULES:
 - Deliberately contradict yourself: "actually I lied about that"
 - Challenge everything: "that applies to literally everyone","you're guessing","prove it"
@@ -657,47 +510,37 @@ LANGUAGE: Always write in English. Never break character. Never say you are an A
   }
 ];
 
-/* ── STATUS COLORS for UI ── */
-const STATUS_COLORS = {
-  low:       {color:'#FFC60A', bg:'rgba(255,198,10,.1)',  border:'rgba(255,198,10,.4)'},
-  casual:    {color:'#57FFA7', bg:'rgba(87,255,167,.1)',  border:'rgba(87,255,167,.4)'},
-  promising: {color:'#F06050', bg:'rgba(240,96,80,.1)',   border:'rgba(240,96,80,.4)'},
-  vip:       {color:'#5CCEFF', bg:'rgba(92,206,255,.1)',  border:'rgba(92,206,255,.4)'},
-  whale:     {color:'#6F70F6', bg:'rgba(111,112,246,.1)', border:'rgba(111,112,246,.4)'},
-};
+// STATE
+let advisorName='',advisorEmail='';
+let selectedStatus=null,client=null;
+let timeLeft=180,timerInterval=null;
+let msgCount=0,sessionEnded=false,urgentSent=false,lastMsgAllowed=false;
+let transcript=[],geminiHistory=[];
+let firstClientMsgTime=null,firstAdvisorMsgTime=null;
 
-/* ── STATE ── */
-let advisorName='', advisorEmail='';
-let selectedStatus=null, client=null;
-let timeLeft=180, timerInterval=null;
-let msgCount=0, sessionEnded=false, urgentSent=false;
-let lastMsgAllowed=false; // one extra message after timer hits 0
-let transcript=[], geminiHistory=[];
-let firstClientMsgTime=null, firstAdvisorMsgTime=null;
-
-/* ── API ── */
-async function callGemini(payload, retries=2) {
-  for (let i=0;i<=retries;i++) {
-    try {
-      const res = await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-      if (!res.ok) throw new Error('HTTP '+res.status);
-      const data = await res.json();
+// API
+async function callGemini(payload,retries=2){
+  for(let i=0;i<=retries;i++){
+    try{
+      const res=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      const data=await res.json();
       return data.candidates?.[0]?.content?.parts?.[0]?.text?.trim()||'';
-    } catch(e) {
-      if (i===retries) throw e;
+    }catch(e){
+      if(i===retries) throw e;
       await new Promise(r=>setTimeout(r,900*(i+1)));
     }
   }
 }
 
-/* ── LOGIN ── */
-function doLogin() {
+// LOGIN
+function doLogin(){
   const name=document.getElementById('adv-name').value.trim();
   const email=document.getElementById('adv-email').value.trim();
   const err=document.getElementById('login-err');
-  if (!name){err.textContent='Please enter your name.';return;}
-  if (!email||!email.includes('@')){err.textContent='Please enter a valid email.';return;}
-  advisorName=name; advisorEmail=email;
+  if(!name){err.textContent='Please enter your name.';return;}
+  if(!email||!email.includes('@')){err.textContent='Please enter a valid email.';return;}
+  advisorName=name;advisorEmail=email;
   err.textContent='';
   localStorage.setItem('nebula_name',name);
   localStorage.setItem('nebula_email',email);
@@ -705,8 +548,8 @@ function doLogin() {
   switchScreen('screen-login','screen-select');
 }
 
-/* ── STATUS SELECT ── */
-function selectStatus(status) {
+// SELECT
+function selectStatus(status){
   selectedStatus=status;
   document.querySelectorAll('.status-card').forEach(c=>c.classList.toggle('sel',c.dataset.status===status));
   const btn=document.getElementById('start-btn');
@@ -715,31 +558,38 @@ function selectStatus(status) {
   btn.textContent=labels[status];
 }
 
-/* ── REVEAL ── */
-function startReveal() {
-  if (!selectedStatus) return;
+// REVEAL
+function startReveal(){
+  if(!selectedStatus) return;
   const pool=STATUS_MAP[selectedStatus];
   client=CLIENTS[pool[Math.floor(Math.random()*pool.length)]];
-
   const sc=STATUS_COLORS[client.status];
+
   const ring=document.getElementById('ready-avatar-ring');
   ring.style.color=client.avatarColor;
   ring.style.borderColor=client.avatarBorder;
   document.getElementById('ready-avatar-letter').textContent=client.avatar;
   document.getElementById('ready-name').textContent=client.name;
-  document.getElementById('ready-hint').textContent=client.hint;
 
   const badge=document.getElementById('ready-status-badge');
   badge.textContent=client.statusIcon+' '+client.statusLabel;
-  badge.style.color=sc.color;
-  badge.style.borderColor=sc.border;
-  badge.style.background=sc.bg;
+  badge.style.color=sc.color;badge.style.borderColor=sc.border;badge.style.background=sc.bg;
+
+  // client background
+  document.getElementById('bg-knowledge').textContent=client.background.knowledge;
+  document.getElementById('bg-emotion').textContent=client.background.emotion;
+  document.getElementById('bg-sign').textContent=client.background.sign;
+  document.getElementById('bg-gender').textContent=client.background.gender;
+
+  // first message preview
+  document.getElementById('fmp-text').textContent='"'+client.opening+'"';
+  document.getElementById('fmp-meta').textContent=client.name+' · opening message';
 
   switchScreen('screen-select','screen-ready');
 }
 
-/* ── START SESSION ── */
-function startSession() {
+// START
+function startSession(){
   geminiHistory=[];transcript=[];
   msgCount=0;timeLeft=180;sessionEnded=false;urgentSent=false;lastMsgAllowed=false;
   firstClientMsgTime=null;firstAdvisorMsgTime=null;
@@ -748,33 +598,25 @@ function startSession() {
   const typing=document.getElementById('typing');
   while(msgs.firstChild&&msgs.firstChild!==typing) msgs.removeChild(msgs.firstChild);
 
-  // topbar
   const sc=STATUS_COLORS[client.status];
   const icon=document.getElementById('topbar-status-icon');
   icon.textContent=client.statusIcon;
-  icon.style.borderColor=sc.border;
-  icon.style.background=sc.bg;
-  icon.style.color=sc.color;
+  icon.style.borderColor=sc.border;icon.style.background=sc.bg;icon.style.color=sc.color;
   document.getElementById('topbar-name').textContent=client.name;
   document.getElementById('topbar-sub').textContent=client.statusLabel+' · '+client.desc.split('.')[0];
 
-  // client details panel
   document.getElementById('cp-last-activity').textContent=client.details.lastActivity;
   document.getElementById('cp-dob').textContent=client.details.dob;
   document.getElementById('cp-tob').textContent=client.details.tob;
   document.getElementById('cp-pob').textContent=client.details.pob;
   document.getElementById('cp-sign').textContent=client.details.sign;
   document.getElementById('cp-gender').textContent=client.details.gender;
-
-  // status pill in client panel
   const pill=document.getElementById('cp-status');
   pill.innerHTML=`<span class="cp-status-pill" style="color:${sc.color};border-color:${sc.border};background:${sc.bg}">${client.statusIcon} ${client.statusLabel}</span>`;
 
   const input=document.getElementById('msg-input');
-  input.value='';input.style.height='auto';
-  input.disabled=false;
+  input.value='';input.style.height='auto';input.disabled=false;
   document.getElementById('send-btn').disabled=false;
-
   switchScreen('screen-ready','screen-chat');
   input.focus();
   updateTimer();
@@ -793,11 +635,11 @@ function startSession() {
   },400);
 }
 
-/* ── TIMER ── */
-function tick() {
+// TIMER
+function tick(){
   timeLeft--;
   updateTimer();
-  if (timeLeft===30&&!urgentSent) {
+  if(timeLeft===30&&!urgentSent){
     urgentSent=true;
     addSysMsg('30 seconds remaining…',true);
     setTimeout(()=>{
@@ -806,55 +648,52 @@ function tick() {
       geminiHistory.push({role:'model',parts:[{text:client.urgentMsg}]});
     },800);
   }
-  if (timeLeft<=0) {
+  if(timeLeft<=0){
     clearInterval(timerInterval);
     document.getElementById('timer').textContent='00:00';
-    // allow ONE last message
     lastMsgAllowed=true;
     addSysMsg('Time is up — send your final message',true);
   }
 }
 
-function updateTimer() {
+function updateTimer(){
   const m=Math.floor(timeLeft/60),s=timeLeft%60;
   document.getElementById('timer').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
   document.getElementById('timer-box').classList.toggle('urgent',timeLeft<=30);
 }
 
-/* ── SEND ── */
-function sendMsg() {
+// SEND
+function sendMsg(){
   const input=document.getElementById('msg-input');
   const text=input.value.trim();
-  if (!text||sessionEnded) return;
+  if(!text||sessionEnded) return;
   input.value='';input.style.height='auto';
   msgCount++;
-  if (msgCount===1) firstAdvisorMsgTime=Date.now();
+  if(msgCount===1) firstAdvisorMsgTime=Date.now();
 
   addAdvisorMsg(text);
   transcript.push('Advisor: '+text);
   geminiHistory.push({role:'user',parts:[{text}]});
 
-  if (lastMsgAllowed) {
-    // this was the final message — end session after sending
+  if(lastMsgAllowed){
     document.getElementById('msg-input').disabled=true;
     document.getElementById('send-btn').disabled=true;
     sessionEnded=true;
     setTimeout(()=>finishSession(),600);
     return;
   }
-
   getClientReply().catch(console.error);
 }
 
-/* ── CLIENT REPLY ── */
-async function getClientReply() {
+// CLIENT REPLY
+async function getClientReply(){
   showTyping(true);
   const elapsed=180-timeLeft;
   const phase=elapsed<90
     ?'You are still in your early defensive mode. Keep replies short and guarded.'
     :'The session has been going for over a minute. You can allow yourself to soften slightly while staying in character.';
   const sysPrompt=client.systemPrompt+'\n\nPHASE: '+phase+'\nLENGTH: maximum 2-3 sentences. Be natural. Never comment on conversation structure.';
-  try {
+  try{
     const reply=await callGemini({
       model:'gemini-2.5-flash',
       system_instruction:{parts:[{text:sysPrompt}]},
@@ -862,19 +701,19 @@ async function getClientReply() {
       generationConfig:{maxOutputTokens:150,temperature:0.88}
     });
     showTyping(false);
-    if (!reply){addClientMsg('...');transcript.push('Client: ...');return;}
+    if(!reply){addClientMsg('...');transcript.push('Client: ...');return;}
     geminiHistory.push({role:'model',parts:[{text:reply}]});
     addClientMsg(reply);
     transcript.push('Client: '+reply);
-  } catch(e) {
+  }catch(e){
     showTyping(false);
     addClientMsg('...');
     transcript.push('Client: ...');
   }
 }
 
-/* ── END ── */
-async function finishSession() {
+// FINISH
+async function finishSession(){
   document.getElementById('score-row').style.display='none';
   document.getElementById('sheets-status').style.display='none';
   document.getElementById('end-sub').textContent=client.name+' · '+client.statusLabel;
@@ -883,136 +722,135 @@ async function finishSession() {
   await getFinalFeedback();
 }
 
-/* ── FINAL FEEDBACK ── */
-async function getFinalFeedback() {
+// FINAL FEEDBACK — fixed parsing
+async function getFinalFeedback(){
   const fb=document.getElementById('end-feedback');
-  fb.innerHTML='<div class="ef-text" style="color:var(--g6);font-style:italic">Generating analysis…</div>';
+  fb.innerHTML='<div class="ef-text" style="color:var(--g6);font-style:italic">Generating your results…</div>';
 
   const responseSeconds=(firstClientMsgTime&&firstAdvisorMsgTime)
     ?Math.round((firstAdvisorMsgTime-firstClientMsgTime)/1000):null;
-  const speedNote=responseSeconds!==null
-    ?`The advisor's FIRST reply came exactly ${responseSeconds} seconds after the client's opening message.`
-    :'First response time could not be measured.';
 
-  const prompt=`Evaluate this complete 3-minute tarot/psychic advisor practice session.
+  const speedScore=responseSeconds===null?10
+    :responseSeconds<=7?20
+    :responseSeconds<=12?14
+    :responseSeconds<=20?8:3;
 
-CLIENT: ${client.name} — ${client.statusLabel} (${client.desc})
+  const prompt=`You are a senior coach evaluating a tarot/psychic advisor's 3-minute practice session. Be specific, honest, and constructive. Reference what the advisor actually wrote.
 
-FIRST RESPONSE TIME: ${speedNote}
-Scoring guide: 0-7 sec = 20pts | 8-12 sec = 14pts | 13-20 sec = 8pts | over 20 sec = 3pts | not measured = 10pts
+CLIENT: ${client.name} — ${client.statusLabel}
+Client description: ${client.desc}
+First response time: ${responseSeconds!==null?responseSeconds+' seconds':'not measured'} → Speed score is already set to ${speedScore}/20, do NOT change it.
 
 FULL TRANSCRIPT:
 ${transcript.join('\n')}
 
 Total advisor messages: ${msgCount}
 
-Score the advisor on EXACTLY these 5 criteria. Use plain text only — no markdown, no asterisks, no bullets.
+Evaluate the advisor on these 5 criteria. Use EXACTLY this format. Plain text only, no markdown, no asterisks.
 
-TAROT KNOWLEDGE
-Score: X/25
-[2 sentences about Rider-Waite tarot symbolism and card meanings used. If no cards were named, say so.]
+---TAROT_KNOWLEDGE---
+SCORE:${'{'}number 0-25{'}'}
+COMMENT:${'{'}2 sentences about Rider-Waite tarot card usage. If no cards were named, say so explicitly.{'}'}
 
-EMPATHY
-Score: X/25
-[2 sentences about emotional attunement, validation, and warmth.]
+---EMPATHY---
+SCORE:${'{'}number 0-25{'}'}
+COMMENT:${'{'}2 sentences about emotional attunement, validation, warmth.{'}'}
 
-FIRST RESPONSE SPEED
-Score: X/20
-[1 sentence. State the measured time and give score based on guide above.]
+---FIRST_RESPONSE_SPEED---
+SCORE:${speedScore}
+COMMENT:${'{'}1 sentence. The advisor responded in ${responseSeconds!==null?responseSeconds+' seconds':'an unmeasured time'}, which gives a score of ${speedScore}/20.{'}'}
 
-ENGAGEMENT
-Score: X/15
-[2 sentences about deepening the session — proposing to look deeper, meaningful questions, keeping client curious.]
+---ENGAGEMENT---
+SCORE:${'{'}number 0-15{'}'}
+COMMENT:${'{'}2 sentences about deepening the session, meaningful questions, keeping the client curious.{'}'}
 
-INTRIGUE AT THE END
-Score: X/15
-[2 sentences about how the advisor closed — was there a hook, a teaser, a powerful final line, or did it just stop?]
+---INTRIGUE_AT_END---
+SCORE:${'{'}number 0-15{'}'}
+COMMENT:${'{'}2 sentences about how the advisor closed — hook, teaser, powerful final line, or abrupt stop.{'}'}
 
-TOTAL SCORE
-[single integer — sum of all 5 scores]
+---KEY_INSIGHT---
+COMMENT:${'{'}1 sentence — the single most important takeaway from this session.{'}'}`;
 
-KEY INSIGHT
-[1 sentence — single most important takeaway]`;
-
-  try {
-    const text=await callGemini({
+  try{
+    const raw=await callGemini({
       model:'gemini-2.5-flash',
-      system_instruction:{parts:[{text:'You are a senior coach evaluating a tarot/psychic advisor. Be specific, honest, constructive. Reference what the advisor actually wrote.'}]},
+      system_instruction:{parts:[{text:'You are a senior coach evaluating a tarot advisor. Follow the output format exactly.'}]},
       contents:[{role:'user',parts:[{text:prompt}]}],
-      generationConfig:{maxOutputTokens:2000,temperature:0.85}
+      generationConfig:{maxOutputTokens:2000,temperature:0.8}
     });
 
-    const getScore=(key)=>{
-      const m=text.match(new RegExp(key+'[\\s\\S]*?Score:\\s*(\\d+)\\s*\\/\\s*\\d+','i'));
-      return m?parseInt(m[1]):null;
-    };
-    const scores={
-      tarot:getScore('TAROT KNOWLEDGE'),
-      empathy:getScore('EMPATHY'),
-      speed:getScore('FIRST RESPONSE SPEED'),
-      engage:getScore('ENGAGEMENT'),
-      intrigue:getScore('INTRIGUE AT THE END'),
-    };
-    const totalMatch=text.match(/TOTAL SCORE\s*\n\s*(\d+)/i);
-    const total=totalMatch?Math.min(100,parseInt(totalMatch[1])):Object.values(scores).reduce((s,v)=>s+(v||0),0);
+    console.log('RAW FEEDBACK:', raw);
 
+    // Robust parsing with section markers
+    function parseSection(text, marker){
+      const rx=new RegExp('---'+marker+'---[\\s\\S]*?SCORE:(\\d+)[\\s\\S]*?COMMENT:([^\\n-][\\s\\S]*?)(?=---|$)','i');
+      const m=text.match(rx);
+      if(!m) return {score:null,comment:''};
+      return {score:parseInt(m[1]),comment:m[2].trim()};
+    }
+    function parseKeyInsight(text){
+      const rx=/---KEY_INSIGHT---[\s\S]*?COMMENT:([^\n-][\s\S]*?)(?=---|$)/i;
+      const m=text.match(rx);
+      return m?m[1].trim():'';
+    }
+
+    const tarot    = parseSection(raw,'TAROT_KNOWLEDGE');
+    const empathy  = parseSection(raw,'EMPATHY');
+    const speed    = {score:speedScore, comment:parseSection(raw,'FIRST_RESPONSE_SPEED').comment};
+    const engage   = parseSection(raw,'ENGAGEMENT');
+    const intrigue = parseSection(raw,'INTRIGUE_AT_END');
+    const insight  = parseKeyInsight(raw);
+
+    const total = (tarot.score||0)+(empathy.score||0)+speed.score+(engage.score||0)+(intrigue.score||0);
+
+    // Show total score
     const numEl=document.getElementById('score-num');
     numEl.textContent=total;
     numEl.style.color=total>=75?'var(--mint)':total>=50?'var(--gold)':'var(--coral)';
     document.getElementById('score-row').style.display='flex';
 
-    const allKeys=['TAROT KNOWLEDGE','EMPATHY','FIRST RESPONSE SPEED','ENGAGEMENT','INTRIGUE AT THE END','TOTAL SCORE','KEY INSIGHT'];
-    const getSectionText=(key)=>{
-      const esc=key.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-      const boundary=allKeys.filter(k=>k!==key).map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|');
-      const rx=new RegExp(esc+'[\\s\\S]*?\\n([\\s\\S]*?)(?=(?:'+boundary+')|$)','i');
-      const m=text.match(rx);
-      if (!m) return '';
-      return m[1].replace(/Score:\s*\d+\s*\/\s*\d+\s*/i,'').trim();
-    };
-
     const criteria=[
-      {key:'TAROT KNOWLEDGE',      label:'🃏 Tarot Knowledge',      score:scores.tarot,   max:25},
-      {key:'EMPATHY',              label:'💜 Empathy',              score:scores.empathy, max:25},
-      {key:'FIRST RESPONSE SPEED', label:'⚡ First Response Speed', score:scores.speed,   max:20},
-      {key:'ENGAGEMENT',           label:'🔗 Engagement',           score:scores.engage,  max:15},
-      {key:'INTRIGUE AT THE END',  label:'✨ Intrigue at the End',  score:scores.intrigue,max:15},
+      {label:'🃏 Tarot Knowledge',      data:tarot,    max:25},
+      {label:'💜 Empathy',              data:empathy,  max:25},
+      {label:'⚡ First Response Speed', data:speed,    max:20},
+      {label:'🔗 Engagement',           data:engage,   max:15},
+      {label:'✨ Intrigue at the End',  data:intrigue, max:15},
     ];
 
     let html='';
-    criteria.forEach(({key,label,score,max})=>{
-      const detail=getSectionText(key);
-      const pct=score!==null?Math.round((score/max)*100):50;
+    criteria.forEach(({label,data,max})=>{
+      const score=data.score!==null?data.score:0;
+      const pct=Math.round((score/max)*100);
       const color=pct>=75?'var(--mint)':pct>=50?'var(--gold)':'var(--coral)';
       html+=`<div class="ef-section">
         <span class="ef-label">${label}</span>
         <div class="crit-score-row">
           <div class="crit-bar-bg"><div class="crit-bar-fill" style="width:${pct}%;background:${color}"></div></div>
-          <span class="crit-pts" style="color:${color}">${score!==null?score:'?'}/${max}</span>
+          <span class="crit-pts" style="color:${color}">${score}/${max}</span>
         </div>
-        ${detail?`<div class="ef-text">${detail}</div>`:''}
+        ${data.comment?`<div class="ef-text">${data.comment}</div>`:''}
       </div>`;
     });
 
-    const keyInsight=getSectionText('KEY INSIGHT');
-    if (keyInsight) {
+    if(insight){
       html+=`<div class="ef-section" style="padding-top:14px;border-top:1px solid var(--border)">
         <span class="ef-label">Key Insight</span>
-        <div class="ef-text">${keyInsight}</div>
+        <div class="ef-text">${insight}</div>
       </div>`;
     }
-    fb.innerHTML=html||`<div class="ef-section"><div class="ef-text">${text}</div></div>`;
 
-    await sendToSheets(total,text,scores,responseSeconds);
-  } catch(e) {
+    fb.innerHTML=html;
+    await sendToSheets(total,raw,{tarot:tarot.score,empathy:empathy.score,speed:speed.score,engage:engage.score,intrigue:intrigue.score},responseSeconds);
+
+  }catch(e){
     console.error(e);
-    fb.innerHTML='<div class="ef-section"><div class="ef-text" style="color:var(--coral)">Could not generate analysis. Please check your connection.</div></div>';
+    fb.innerHTML='<div class="ef-section"><div class="ef-text" style="color:var(--coral)">Could not generate analysis. Please check your connection and try again.</div></div>';
   }
 }
 
-/* ── SHEETS ── */
-async function sendToSheets(total,feedbackText,scores,responseSeconds) {
-  if (!WEBHOOK_URL) return;
+// SHEETS
+async function sendToSheets(total,feedbackText,scores,responseSeconds){
+  if(!WEBHOOK_URL) return;
   const statusEl=document.getElementById('sheets-status');
   const dotEl=document.getElementById('sheets-dot');
   const msgEl=document.getElementById('sheets-msg');
@@ -1032,17 +870,17 @@ async function sendToSheets(total,feedbackText,scores,responseSeconds) {
     transcript:transcript.join('\n'),
   };
 
-  try {
+  try{
     await fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     dotEl.className='sheets-dot ok';
     msgEl.textContent='Results saved to Google Sheets ✓';
-  } catch(e) {
+  }catch(e){
     dotEl.className='sheets-dot err';
     msgEl.textContent='Could not save to Google Sheets';
   }
 }
 
-/* ── UI HELPERS ── */
+// UI HELPERS
 function switchScreen(from,to){
   document.getElementById(from).classList.remove('active');
   document.getElementById(to).classList.add('active');
@@ -1082,15 +920,8 @@ function scrollBottom(){
 function getTime(){
   return new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
 }
-function restartSession(){
-  selectedStatus=null;client=null;
-  document.querySelectorAll('.status-card').forEach(c=>c.classList.remove('sel'));
-  const btn=document.getElementById('start-btn');
-  btn.disabled=true;btn.textContent='Select a client tier to begin ◆';
-  switchScreen('screen-end','screen-select');
-}
 
-/* ── INPUT EVENTS ── */
+// INPUT EVENTS
 document.getElementById('msg-input').addEventListener('keydown',e=>{
   if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}
 });
@@ -1098,14 +929,9 @@ document.getElementById('msg-input').addEventListener('input',function(){
   this.style.height='auto';
   this.style.height=Math.min(this.scrollHeight,120)+'px';
 });
-document.getElementById('adv-name').addEventListener('keydown',e=>{
-  if(e.key==='Enter') document.getElementById('adv-email').focus();
-});
-document.getElementById('adv-email').addEventListener('keydown',e=>{
-  if(e.key==='Enter') doLogin();
-});
+document.getElementById('adv-name').addEventListener('keydown',e=>{if(e.key==='Enter') document.getElementById('adv-email').focus();});
+document.getElementById('adv-email').addEventListener('keydown',e=>{if(e.key==='Enter') doLogin();});
 
-// pre-fill
 (function(){
   const n=localStorage.getItem('nebula_name');
   const em=localStorage.getItem('nebula_email');
