@@ -802,6 +802,7 @@ async function sendToSheets(total,feedbackText,scores,responseSeconds){
   const msgEl=document.getElementById('sheets-msg');
   statusEl.style.display='flex';
   const payload={
+    practiceName: "AI Trial Chat Simulation",
     timestamp:new Date().toISOString(),
     advisorName,advisorEmail,
     clientId:client.id,clientName:client.name,
