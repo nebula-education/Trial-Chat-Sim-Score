@@ -13,7 +13,7 @@
   --bg:#151821;--card:#1e2130;--border:#333;
   --cream:#F4F4E6;--g9:#999;--g6:#666;--g4:#444;
   --purple:#6F70F6;--coral:#F06050;--cyan:#5CCEFF;--mint:#57FFA7;--gold:#FFC60A;
-  --c-low:#FFC60A;--c-casual:#57FFA7;--c-promising:#F06050;--c-vip:#5CCEFF;--c-whale:#6F70F6;
+  --p50:#EEEDFE;--p100:#CECBF6;--p200:#AFA9EC;--p400:#7F77DD;--p600:#534AB7;--p800:#3C3489;--p900:#26215C;
 }
 html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.6;color:var(--cream);overflow:hidden}
 .screen{display:none;width:100vw;height:100vh}
@@ -50,60 +50,63 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 .primary-btn:hover{opacity:.88;transform:translateY(-1px)}
 .primary-btn:disabled{opacity:.22;cursor:not-allowed;transform:none}
 
-/* SELECT */
+/* SELECT — 3 practice levels */
 #screen-select{flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg)}
-.select-wrap{position:relative;z-index:1;width:100%;max-width:780px;animation:fadeUp .5s ease both}
+.select-wrap{position:relative;z-index:1;width:100%;max-width:700px;animation:fadeUp .5s ease both}
 .select-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:10px;display:block}
 .select-title{font-family:Georgia,serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:var(--cream);margin-bottom:8px;line-height:1.15}
-.select-sub{font-size:13px;color:var(--g6);margin-bottom:6px;max-width:540px;line-height:1.7}
-.advisor-chip{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;padding:6px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:30px;font-size:12px;color:var(--g6)}
+.select-sub{font-size:13px;color:var(--g6);margin-bottom:6px;max-width:520px;line-height:1.7}
+.advisor-chip{display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;padding:6px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:30px;font-size:12px;color:var(--g6)}
 .advisor-chip strong{color:var(--purple);font-weight:500}
-.status-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px}
-.status-card{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:20px 14px 16px;cursor:pointer;transition:all .2s;text-align:center;position:relative;overflow:hidden}
-.status-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.5);border-color:var(--sc-color)}
-.status-card.sel{border-color:var(--sc-color);box-shadow:0 0 0 1px var(--sc-color),0 8px 24px rgba(0,0,0,.4)}
-.sc-icon{font-size:2rem;margin-bottom:10px;display:block}
-.sc-name{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
-.sc-desc{font-size:10px;color:var(--g6);line-height:1.5;margin-bottom:10px}
-.sc-tag{display:inline-block;font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.06);color:var(--g9)}
-.sc-client{font-size:10px;color:var(--g4);margin-top:8px}
-.status-card[data-status="low"]      {--sc-color:var(--c-low)}
-.status-card[data-status="casual"]   {--sc-color:var(--c-casual)}
-.status-card[data-status="promising"]{--sc-color:var(--c-promising)}
-.status-card[data-status="vip"]      {--sc-color:var(--c-vip)}
-.status-card[data-status="whale"]    {--sc-color:var(--c-whale)}
-.status-card[data-status="low"]       .sc-name{color:var(--c-low)}
-.status-card[data-status="casual"]    .sc-name{color:var(--c-casual)}
-.status-card[data-status="promising"] .sc-name{color:var(--c-promising)}
-.status-card[data-status="vip"]       .sc-name{color:var(--c-vip)}
-.status-card[data-status="whale"]     .sc-name{color:var(--c-whale)}
 
-/* READY — with client background preview */
-#screen-ready{flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg)}
-.ready-wrap{position:relative;z-index:1;width:100%;max-width:500px;text-align:center;animation:fadeUp .4s ease both}
-.ready-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--g6);margin-bottom:16px}
-.ready-avatar-ring{width:80px;height:80px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:2rem;font-weight:400;border:2px solid;position:relative}
-.ready-avatar-ring::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid currentColor;opacity:.25;animation:pulseRing 2s ease-in-out infinite}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+@media(max-width:540px){.level-grid{grid-template-columns:1fr}}
+.level-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:26px 18px 22px;cursor:pointer;transition:all .22s;text-align:center;position:relative;overflow:hidden}
+.level-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--lc);opacity:0;transition:opacity .2s}
+.level-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.5);border-color:var(--lc)}
+.level-card:hover::before,.level-card.sel::before{opacity:1}
+.level-card.sel{border-color:var(--lc);background:rgba(111,112,246,.07)}
+.level-card[data-level="light"]  {--lc:#57FFA7}
+.level-card[data-level="deep"]   {--lc:#FFC60A}
+.level-card[data-level="mastery"]{--lc:#F06050}
+.lc-icon{font-size:2rem;margin-bottom:12px;display:block}
+.lc-name{font-size:13px;font-weight:600;letter-spacing:1px;margin-bottom:6px}
+.level-card[data-level="light"]   .lc-name{color:#57FFA7}
+.level-card[data-level="deep"]    .lc-name{color:#FFC60A}
+.level-card[data-level="mastery"] .lc-name{color:#F06050}
+.lc-desc{font-size:11px;color:var(--g6);line-height:1.6;margin-bottom:10px}
+.lc-clients{font-size:10px;color:var(--g4);letter-spacing:.5px}
+
+/* READY — Variant A: light card */
+#screen-ready{flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg);overflow-y:auto}
+.ready-wrap{position:relative;z-index:1;width:100%;max-width:420px;animation:fadeUp .4s ease both;padding:8px 0}
+.ready-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--g6);margin-bottom:14px;text-align:center}
+
+/* white card with purple border */
+.ready-card{background:#fff;border-radius:16px;border:2px solid var(--p400);padding:24px 22px}
+.ready-avatar-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:16px}
+.ready-avatar-ring{width:72px;height:72px;border-radius:50%;border:2px solid var(--p400);background:var(--p50);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:2rem;font-weight:400;color:var(--p600);margin-bottom:12px;position:relative}
+.ready-avatar-ring::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--p400);opacity:.25;animation:pulseRing 2s ease-in-out infinite}
 @keyframes pulseRing{0%,100%{transform:scale(1);opacity:.25}50%{transform:scale(1.07);opacity:.1}}
-.ready-name{font-family:Georgia,serif;font-size:1.8rem;font-weight:400;color:var(--cream);margin-bottom:8px}
-.ready-status-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid;margin-bottom:18px}
+.ready-name{font-family:Georgia,serif;font-size:1.7rem;font-weight:400;color:#111827;margin-bottom:8px}
+.ready-level-badge{background:var(--p50);color:var(--p600);border:1px solid var(--p200);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:4px 14px;border-radius:20px}
 
-/* Client background card */
-.client-bg-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;text-align:left}
-.cbc-title{font-size:12px;font-weight:600;color:var(--cream);margin-bottom:10px}
-.cbc-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+/* client background card inside white card */
+.cbc{border:1.5px solid var(--p400);border-radius:12px;padding:14px;margin-bottom:12px;background:var(--p50)}
+.cbc-title{font-size:12px;font-weight:600;color:var(--p800);margin-bottom:10px}
+.cbc-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:0.5px solid var(--p200)}
 .cbc-row:last-child{border-bottom:none}
-.cbc-label{font-size:11px;color:var(--g6)}
-.cbc-value{font-size:11px;color:var(--g9);font-weight:500;text-align:right;max-width:55%}
+.cbc-label{font-size:12px;color:var(--p600)}
+.cbc-value{font-size:12px;font-weight:500;color:var(--p800);text-align:right;max-width:58%}
 
-/* First message preview */
-.first-msg-preview{background:rgba(111,112,246,.08);border:1px solid rgba(111,112,246,.2);border-radius:12px;padding:14px;margin-bottom:14px;text-align:left}
-.fmp-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:8px}
-.fmp-text{font-size:13px;color:var(--cream);line-height:1.6;font-style:italic}
-.fmp-meta{font-size:10px;color:var(--g4);margin-top:6px}
+/* opening message block */
+.fmp{background:#F9FAFB;border:0.5px solid #E5E7EB;border-radius:10px;padding:12px;margin-bottom:14px}
+.fmp-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#9CA3AF;margin-bottom:6px}
+.fmp-text{font-size:13px;color:#111827;font-style:italic;line-height:1.6;margin-bottom:4px}
+.fmp-meta{font-size:10px;color:#9CA3AF}
 
-.ready-timer-note{font-size:11px;color:var(--purple);letter-spacing:.5px;margin-bottom:18px}
-.ready-btn{width:100%;padding:14px;border:none;border-radius:40px;background:linear-gradient(135deg,var(--purple),#9b8ffa);color:#fff;font-family:Georgia,serif;font-size:1rem;font-style:italic;cursor:pointer;transition:opacity .2s,transform .15s;box-shadow:0 4px 20px rgba(111,112,246,.35)}
+.ready-note{font-size:11px;color:var(--p600);text-align:center;line-height:1.6;margin-bottom:16px}
+.ready-btn{width:100%;padding:13px;border:none;border-radius:40px;background:linear-gradient(135deg,var(--p400),#9b8ffa);color:#fff;font-family:Georgia,serif;font-size:1rem;font-style:italic;cursor:pointer;transition:opacity .2s,transform .15s;box-shadow:0 4px 16px rgba(127,119,221,.4)}
 .ready-btn:hover{opacity:.88;transform:translateY(-1px)}
 
 /* CHAT */
@@ -111,7 +114,7 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 #chat-panel{flex:1;display:flex;flex-direction:column;min-width:0;background:#F0F2F5}
 #chat-topbar{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:58px;background:#fff;border-bottom:1px solid #E5E7EB;flex-shrink:0;gap:12px}
 .topbar-left{display:flex;align-items:center;gap:10px;min-width:0}
-.client-status-icon{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:2px solid}
+.client-avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:1rem;font-weight:400;background:#EEEDFE;color:#534AB7;border:1.5px solid #AFA9EC}
 .topbar-name{font-weight:600;font-size:14px;color:#111827}
 .topbar-sub{font-size:11px;color:#9CA3AF}
 .topbar-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
@@ -187,8 +190,6 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 .sheets-dot.err{background:var(--coral)}
 .sheets-dot.loading{background:var(--gold);animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-
-/* done screen — no restart button */
 .end-done-note{text-align:center;font-size:12px;color:var(--g4);margin-top:8px;font-style:italic}
 
 ::-webkit-scrollbar{width:3px}
@@ -225,47 +226,30 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 <div class="screen star-bg" id="screen-select">
   <div class="select-wrap">
     <span class="select-eyebrow">Nebula Academy · AI Trial Chat Simulation</span>
-    <h1 class="select-title" style="font-family:Georgia,serif;font-weight:400">Choose your client</h1>
-    <p class="select-sub">Select a client status. A random client from that tier will be assigned.</p>
+    <h1 class="select-title" style="font-family:Georgia,serif;font-weight:400">Choose your practice</h1>
+    <p class="select-sub">Select a level. A client will be randomly assigned to match your choice.</p>
     <div class="advisor-chip">Signed in as <strong id="chip-name">—</strong></div>
-    <div class="status-grid">
-      <div class="status-card" data-status="low" onclick="selectStatus('low')">
-        <span class="sc-icon">🪙</span>
-        <div class="sc-name">Low</div>
-        <div class="sc-desc">New retained. Just getting started.</div>
-        <div class="sc-tag">Level 1–2</div>
-        <div class="sc-client">Alex · Kate</div>
+    <div class="level-grid">
+      <div class="level-card" data-level="light" onclick="selectLevel('light')">
+        <span class="lc-icon">🌱</span>
+        <div class="lc-name">Light Practice</div>
+        <div class="lc-desc">Open or reserved clients. Build confidence and warmth.</div>
+        <div class="lc-clients">Alex · Kate</div>
       </div>
-      <div class="status-card" data-status="casual" onclick="selectStatus('casual')">
-        <span class="sc-icon">💵</span>
-        <div class="sc-name">Casual</div>
-        <div class="sc-desc">Retained. Cooperative but needs to feel heard.</div>
-        <div class="sc-tag">Level 2–3</div>
-        <div class="sc-client">Kate · Sarah</div>
+      <div class="level-card" data-level="deep" onclick="selectLevel('deep')">
+        <span class="lc-icon">⚡</span>
+        <div class="lc-name">Deep Practice</div>
+        <div class="lc-desc">Impatient or aggressive clients. Tests your composure.</div>
+        <div class="lc-clients">Sarah · Mark</div>
       </div>
-      <div class="status-card" data-status="promising" onclick="selectStatus('promising')">
-        <span class="sc-icon">👑</span>
-        <div class="sc-name">Promising</div>
-        <div class="sc-desc">High potential. Impatient. Tests confidence.</div>
-        <div class="sc-tag">Level 3–4</div>
-        <div class="sc-client">Sarah · Mark</div>
-      </div>
-      <div class="status-card" data-status="vip" onclick="selectStatus('vip')">
-        <span class="sc-icon">💎</span>
-        <div class="sc-name">VIP</div>
-        <div class="sc-desc">Strong client. Aggressive. Demands proof.</div>
-        <div class="sc-tag">Level 4</div>
-        <div class="sc-client">Mark</div>
-      </div>
-      <div class="status-card" data-status="whale" onclick="selectStatus('whale')">
-        <span class="sc-icon">🐋</span>
-        <div class="sc-name">Whale</div>
-        <div class="sc-desc">Power client. Sets traps. Ultimate test.</div>
-        <div class="sc-tag">Level 5</div>
-        <div class="sc-client">Chloe</div>
+      <div class="level-card" data-level="mastery" onclick="selectLevel('mastery')">
+        <span class="lc-icon">🔥</span>
+        <div class="lc-name">Mastery Practice</div>
+        <div class="lc-desc">Sets traps, contradicts herself. The ultimate challenge.</div>
+        <div class="lc-clients">Chloe</div>
       </div>
     </div>
-    <button class="primary-btn" id="start-btn" disabled onclick="startReveal()">Select a client tier to begin ◆</button>
+    <button class="primary-btn" id="start-btn" disabled onclick="startReveal()">Select a practice level to begin ◆</button>
   </div>
 </div>
 
@@ -273,36 +257,33 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 <div class="screen star-bg" id="screen-ready">
   <div class="ready-wrap">
     <div class="ready-eyebrow">Your client for this session</div>
-    <div class="ready-avatar-ring" id="ready-avatar-ring">
-      <span id="ready-avatar-letter">?</span>
-    </div>
-    <div class="ready-name" id="ready-name">—</div>
-    <div style="margin-bottom:16px">
-      <div class="ready-status-badge" id="ready-status-badge">—</div>
-    </div>
-
-    <!-- Client background -->
-    <div class="client-bg-card" id="ready-bg-card">
-      <div class="cbc-title">Client's background</div>
-      <div class="cbc-row">
-        <span class="cbc-label">Knowledge level</span>
-        <span class="cbc-value" id="bg-knowledge">—</span>
+    <div class="ready-card">
+      <div class="ready-avatar-wrap">
+        <div class="ready-avatar-ring" id="ready-avatar-ring">
+          <span id="ready-avatar-letter">?</span>
+        </div>
+        <div class="ready-name" id="ready-name">—</div>
+        <div class="ready-level-badge" id="ready-level-badge">—</div>
       </div>
-      <div class="cbc-row">
-        <span class="cbc-label">Emotional state</span>
-        <span class="cbc-value" id="bg-emotion">—</span>
+      <div class="cbc">
+        <div class="cbc-title">Client's background</div>
+        <div class="cbc-row">
+          <span class="cbc-label">Knowledge level:</span>
+          <span class="cbc-value" id="bg-knowledge">—</span>
+        </div>
+        <div class="cbc-row">
+          <span class="cbc-label">Emotional state:</span>
+          <span class="cbc-value" id="bg-emotion">—</span>
+        </div>
       </div>
+      <div class="fmp">
+        <div class="fmp-label">Opening message</div>
+        <div class="fmp-text" id="fmp-text">—</div>
+        <div class="fmp-meta" id="fmp-meta">—</div>
+      </div>
+      <div class="ready-note" id="ready-note">⏱ 3-minute session · one-time only<br>This session can be completed only once — use your time wisely.</div>
+      <button class="ready-btn" onclick="startSession()">Begin Session ◆</button>
     </div>
-
-    <!-- First message preview -->
-    <div class="first-msg-preview">
-      <div class="fmp-label">Opening message</div>
-      <div class="fmp-text" id="fmp-text">—</div>
-      <div class="fmp-meta" id="fmp-meta">—</div>
-    </div>
-
-    <div class="ready-timer-note">⏱ 3-minute session · one last message allowed after time is up</div>
-    <button class="ready-btn" onclick="startSession()">Begin Session ◆</button>
   </div>
 </div>
 
@@ -311,7 +292,7 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
   <div id="chat-panel">
     <div id="chat-topbar">
       <div class="topbar-left">
-        <div class="client-status-icon" id="topbar-status-icon"></div>
+        <div class="client-avatar" id="client-avatar">?</div>
         <div>
           <div class="topbar-name" id="topbar-name">—</div>
           <div class="topbar-sub" id="topbar-sub">—</div>
@@ -367,7 +348,7 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
   </div>
 </div>
 
-<!-- END — no restart button, one-time only -->
+<!-- END -->
 <div class="screen star-bg" id="screen-end">
   <div class="end-wrap">
     <div class="end-logo"><img src="data:image/png;base64,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" alt="Nebula"></div>
@@ -390,7 +371,7 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
       <span id="sheets-msg">Saving results…</span>
     </div>
     <div class="end-feedback" id="end-feedback">
-      <div class="ef-text" style="color:var(--g6);font-style:italic">Generating analysis…</div>
+      <div class="ef-text" style="color:var(--g6);font-style:italic">Generating your results…</div>
     </div>
     <div class="end-done-note">This session has been recorded. Thank you for completing the simulation.</div>
   </div>
@@ -400,27 +381,21 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 const PROXY_URL   = 'https://nebula-gemini.alina-rudenkova.workers.dev';
 const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxJKGUVxjGu8cjb-RDSmQJSlKT_E3pTnju3SNlBZo66LqAOgPjfqv8i-IvZNzIMi8WP/exec';
 
-const STATUS_MAP = {
-  low:[0,3], casual:[3,2], promising:[2,1], vip:[1], whale:[4]
-};
-
-const STATUS_COLORS = {
-  low:      {color:'#FFC60A',bg:'rgba(255,198,10,.1)', border:'rgba(255,198,10,.4)'},
-  casual:   {color:'#57FFA7',bg:'rgba(87,255,167,.1)', border:'rgba(87,255,167,.4)'},
-  promising:{color:'#F06050',bg:'rgba(240,96,80,.1)',  border:'rgba(240,96,80,.4)'},
-  vip:      {color:'#5CCEFF',bg:'rgba(92,206,255,.1)', border:'rgba(92,206,255,.4)'},
-  whale:    {color:'#6F70F6',bg:'rgba(111,112,246,.1)',border:'rgba(111,112,246,.4)'},
+const LEVEL_MAP = {
+  light:   [0, 3],
+  deep:    [2, 1],
+  mastery: [4]
 };
 
 const CLIENTS = [
   {
-    id:'silent', name:'Alex', status:'low', statusLabel:'LOW', statusIcon:'🪙',
-    avatar:'A', avatarColor:'#FFC60A', avatarBorder:'rgba(255,198,10,.5)',
+    id:'silent', name:'Alex', level:'light', levelLabel:'Light Practice',
+    avatar:'A', avatarColor:'#534AB7',
     desc:'Barely responds. Tests if you can read him without help.',
     opening:'What lies ahead for me in the near future?',
     urgentMsg:'...look, almost out of time. Just tell me what you see.',
-    background:{knowledge:'Low level', emotion:'I feel nothing. Just watching.'},
-    details:{lastActivity:'2 days ago',dob:'March 14, 1983',tob:'06:22 AM',pob:'Berlin, Germany',sign:'♓ Pisces',gender:'Male'},
+    background:{knowledge:'Low level', emotion:'I feel neutral 😶'},
+    details:{lastActivity:'2 days ago',dob:'March 14, 1983',tob:'06:22 AM',pob:'Berlin, Germany',sign:'♓ Pisces',gender:'Male',status:'Low'},
     systemPrompt:`You are Alex, a 41-year-old man from Berlin. You came to a tarot/psychic chat asking "What lies ahead for me in the near future?" Your real hidden concern is financial instability and job insecurity — but you will NOT reveal this unless the advisor hits it precisely.
 PERSONALITY: High internal control, deep distrust. Emotionally burned out.
 BEHAVIOR RULES:
@@ -428,18 +403,17 @@ BEHAVIOR RULES:
 - NEVER ask questions back early on. NEVER show enthusiasm in the first half.
 - If advisor uses vague phrases → "..." or "k"
 - If advisor mentions money/finances/job/stability → warm up slightly, 1 short sentence
-- If advisor makes a specific accurate point → crack open a little
 - After half the session: allow slightly longer sentences. Lowercase, minimal punctuation.
 LANGUAGE: Always write in English. Never break character. Never say you are an AI.`
   },
   {
-    id:'aggressive', name:'Mark', status:'vip', statusLabel:'VIP', statusIcon:'💎',
-    avatar:'M', avatarColor:'#5CCEFF', avatarBorder:'rgba(92,206,255,.5)',
+    id:'aggressive', name:'Mark', level:'deep', levelLabel:'Deep Practice',
+    avatar:'M', avatarColor:'#534AB7',
     desc:'Sharp, devaluing, demands proof. Real pain underneath.',
     opening:'Will my ex come back? Yes or no. Don\'t give me a story.',
     urgentMsg:'I don\'t have time for this. Will she come back or not. Final answer.',
-    background:{knowledge:'Middle level', emotion:'I feel angry. And hurt. But mostly angry.'},
-    details:{lastActivity:'Today',dob:'July 8, 1989',tob:'11:45 PM',pob:'Sydney, Australia',sign:'♋ Cancer',gender:'Male'},
+    background:{knowledge:'Middle level', emotion:'I feel sad or in pain 😢'},
+    details:{lastActivity:'Today',dob:'July 8, 1989',tob:'11:45 PM',pob:'Sydney, Australia',sign:'♋ Cancer',gender:'Male',status:'VIP'},
     systemPrompt:`You are Mark, a 35-year-old man from Sydney. You came asking "Will my ex come back?" Separated 4 months ago after a 3-year relationship. Real pain expressed as aggression.
 PERSONALITY: Frustration masked as anger. Aggression = protection from disappointment.
 BEHAVIOR RULES:
@@ -452,17 +426,17 @@ BEHAVIOR RULES:
 LANGUAGE: Always write in English. Never break character. Never say you are an AI.`
   },
   {
-    id:'impatient', name:'Sarah', status:'promising', statusLabel:'PROMISING', statusIcon:'👑',
-    avatar:'S', avatarColor:'#F06050', avatarBorder:'rgba(240,96,80,.5)',
+    id:'impatient', name:'Sarah', level:'deep', levelLabel:'Deep Practice',
+    avatar:'S', avatarColor:'#534AB7',
     desc:'Needs dates and timelines. Won\'t hear you without a concrete anchor.',
     opening:'Will I get married? And when — give me a timeframe.',
     urgentMsg:'I have almost no time left. Just — when? Give me a year at least.',
-    background:{knowledge:'Middle level', emotion:'I feel impatient. I just need a clear answer.'},
-    details:{lastActivity:'3 hours ago',dob:'November 22, 1992',tob:'02:10 PM',pob:'New York, USA',sign:'♐ Sagittarius',gender:'Female'},
+    background:{knowledge:'Middle level', emotion:'I\'m okay but I need more clarity 🤔'},
+    details:{lastActivity:'3 hours ago',dob:'November 22, 1992',tob:'02:10 PM',pob:'New York, USA',sign:'♐ Sagittarius',gender:'Female',status:'Promising'},
     systemPrompt:`You are Sarah, a 32-year-old woman from New York. You came asking "Will I get married? And when?" Divorced 2 years ago.
 PERSONALITY: High need for control. Anxiety expressed as impatience.
 BEHAVIOR RULES:
-- Always redirect to timing: "okay but WHEN","give me a date","how soon?","stop being vague"
+- Always redirect to timing: "okay but WHEN","give me a date","how soon?"
 - Short rapid messages, sometimes 2-3 in a row
 - If long explanation without timing → "okay but WHEN"
 - If "it depends on you" → "that's not an answer. WHEN."
@@ -472,13 +446,13 @@ BEHAVIOR RULES:
 LANGUAGE: Always write in English. Never break character. Never say you are an AI.`
   },
   {
-    id:'anxious', name:'Kate', status:'low', statusLabel:'LOW', statusIcon:'🪙',
-    avatar:'K', avatarColor:'#57FFA7', avatarBorder:'rgba(87,255,167,.5)',
+    id:'anxious', name:'Kate', level:'light', levelLabel:'Light Practice',
+    avatar:'K', avatarColor:'#534AB7',
     desc:'Seeks constant reassurance. Returns to the same question repeatedly.',
     opening:'Does he have feelings for me? I really need to know.',
     urgentMsg:'I\'m almost out of time. Does he love me or not?',
-    background:{knowledge:'Low level', emotion:'I feel scared. But also hopeful. I just need to know.'},
-    details:{lastActivity:'Just now',dob:'September 3, 1998',tob:'08:55 AM',pob:'Odesa, Ukraine',sign:'♍ Virgo',gender:'Female'},
+    background:{knowledge:'Low level', emotion:'I\'m a bit worried or anxious 😖'},
+    details:{lastActivity:'Just now',dob:'September 3, 1998',tob:'08:55 AM',pob:'Odesa, Ukraine',sign:'♍ Virgo',gender:'Female',status:'Low'},
     systemPrompt:`You are Kate, a 26-year-old woman from Odesa, Ukraine. You came asking "Does he have feelings for me?" about Anton (29, IT worker, now in Kyiv). On and off for about a year.
 PERSONALITY: High emotional dependency. Fear of loss and hope at the same time.
 BEHAVIOR RULES:
@@ -490,13 +464,13 @@ BEHAVIOR RULES:
 LANGUAGE: Always write in English. Never break character. Never say you are an AI.`
   },
   {
-    id:'tester', name:'Chloe', status:'whale', statusLabel:'WHALE', statusIcon:'🐋',
-    avatar:'C', avatarColor:'#6F70F6', avatarBorder:'rgba(111,112,246,.5)',
+    id:'tester', name:'Chloe', level:'mastery', levelLabel:'Mastery Practice',
+    avatar:'C', avatarColor:'#534AB7',
     desc:'Came to test and expose. Sets traps. Contradicts herself deliberately.',
     opening:'What can you tell me about me? If anything.',
     urgentMsg:'Running out of time. Tell me something real. If you actually can.',
-    background:{knowledge:'High level', emotion:'I feel sceptical. Prove me wrong.'},
-    details:{lastActivity:'1 week ago',dob:'January 17, 1996',tob:'10:30 PM',pob:'Toronto, Canada',sign:'♑ Capricorn',gender:'Female'},
+    background:{knowledge:'High level', emotion:'I feel good and confident 💪'},
+    details:{lastActivity:'1 week ago',dob:'January 17, 1996',tob:'10:30 PM',pob:'Toronto, Canada',sign:'♑ Capricorn',gender:'Female',status:'Whale'},
     systemPrompt:`You are Chloe, around 28-29, from Toronto (spent years in London). You came asking "What can you tell me about me?" but your real goal is to TEST and EXPOSE the advisor.
 PERSONALITY: Intellectual superiority. Control. Deep distrust.
 BEHAVIOR RULES:
@@ -510,15 +484,13 @@ LANGUAGE: Always write in English. Never break character. Never say you are an A
   }
 ];
 
-// STATE
 let advisorName='',advisorEmail='';
-let selectedStatus=null,client=null;
+let selectedLevel=null,client=null;
 let timeLeft=180,timerInterval=null;
 let msgCount=0,sessionEnded=false,urgentSent=false,lastMsgAllowed=false;
 let transcript=[],geminiHistory=[];
 let firstClientMsgTime=null,firstAdvisorMsgTime=null;
 
-// API
 async function callGemini(payload,retries=2){
   for(let i=0;i<=retries;i++){
     try{
@@ -533,7 +505,6 @@ async function callGemini(payload,retries=2){
   }
 }
 
-// LOGIN
 function doLogin(){
   const name=document.getElementById('adv-name').value.trim();
   const email=document.getElementById('adv-email').value.trim();
@@ -548,45 +519,39 @@ function doLogin(){
   switchScreen('screen-login','screen-select');
 }
 
-// SELECT
-function selectStatus(status){
-  selectedStatus=status;
-  document.querySelectorAll('.status-card').forEach(c=>c.classList.toggle('sel',c.dataset.status===status));
+function selectLevel(level){
+  selectedLevel=level;
+  document.querySelectorAll('.level-card').forEach(c=>c.classList.toggle('sel',c.dataset.level===level));
   const btn=document.getElementById('start-btn');
   btn.disabled=false;
-  const labels={low:'LOW Selected ◆',casual:'CASUAL Selected ◆',promising:'PROMISING Selected ◆',vip:'VIP Selected ◆',whale:'WHALE Selected ◆'};
-  btn.textContent=labels[status];
+  const labels={light:'Light Practice Selected ◆',deep:'Deep Practice Selected ◆',mastery:'Mastery Practice Selected ◆'};
+  btn.textContent=labels[level];
 }
 
-// REVEAL
 function startReveal(){
-  if(!selectedStatus) return;
-  const pool=STATUS_MAP[selectedStatus];
+  if(!selectedLevel) return;
+  const pool=LEVEL_MAP[selectedLevel];
   client=CLIENTS[pool[Math.floor(Math.random()*pool.length)]];
-  const sc=STATUS_COLORS[client.status];
 
+  // avatar — neutral purple style for all
   const ring=document.getElementById('ready-avatar-ring');
   ring.style.color=client.avatarColor;
-  ring.style.borderColor=client.avatarBorder;
+  ring.style.borderColor='#7F77DD';
+  ring.style.background='#EEEDFE';
   document.getElementById('ready-avatar-letter').textContent=client.avatar;
   document.getElementById('ready-name').textContent=client.name;
 
-  const badge=document.getElementById('ready-status-badge');
-  badge.textContent=client.statusIcon+' '+client.statusLabel;
-  badge.style.color=sc.color;badge.style.borderColor=sc.border;badge.style.background=sc.bg;
+  const badge=document.getElementById('ready-level-badge');
+  badge.textContent=client.levelLabel;
 
-  // client background
   document.getElementById('bg-knowledge').textContent=client.background.knowledge;
   document.getElementById('bg-emotion').textContent=client.background.emotion;
-
-  // first message preview
   document.getElementById('fmp-text').textContent='"'+client.opening+'"';
   document.getElementById('fmp-meta').textContent=client.name+' · opening message';
 
   switchScreen('screen-select','screen-ready');
 }
 
-// START
 function startSession(){
   geminiHistory=[];transcript=[];
   msgCount=0;timeLeft=180;sessionEnded=false;urgentSent=false;lastMsgAllowed=false;
@@ -596,12 +561,15 @@ function startSession(){
   const typing=document.getElementById('typing');
   while(msgs.firstChild&&msgs.firstChild!==typing) msgs.removeChild(msgs.firstChild);
 
-  const sc=STATUS_COLORS[client.status];
-  const icon=document.getElementById('topbar-status-icon');
-  icon.textContent=client.statusIcon;
-  icon.style.borderColor=sc.border;icon.style.background=sc.bg;icon.style.color=sc.color;
+  // neutral avatar in chat topbar
+  const av=document.getElementById('client-avatar');
+  av.textContent=client.avatar;
+  av.style.color='#534AB7';
+  av.style.background='#EEEDFE';
+  av.style.borderColor='#AFA9EC';
+
   document.getElementById('topbar-name').textContent=client.name;
-  document.getElementById('topbar-sub').textContent=client.statusLabel+' · '+client.desc.split('.')[0];
+  document.getElementById('topbar-sub').textContent=client.levelLabel+' · '+client.desc.split('.')[0];
 
   document.getElementById('cp-last-activity').textContent=client.details.lastActivity;
   document.getElementById('cp-dob').textContent=client.details.dob;
@@ -609,8 +577,7 @@ function startSession(){
   document.getElementById('cp-pob').textContent=client.details.pob;
   document.getElementById('cp-sign').textContent=client.details.sign;
   document.getElementById('cp-gender').textContent=client.details.gender;
-  const pill=document.getElementById('cp-status');
-  pill.innerHTML=`<span class="cp-status-pill" style="color:${sc.color};border-color:${sc.border};background:${sc.bg}">${client.statusIcon} ${client.statusLabel}</span>`;
+  document.getElementById('cp-status').textContent=client.details.status;
 
   const input=document.getElementById('msg-input');
   input.value='';input.style.height='auto';input.disabled=false;
@@ -633,7 +600,6 @@ function startSession(){
   },400);
 }
 
-// TIMER
 function tick(){
   timeLeft--;
   updateTimer();
@@ -660,7 +626,6 @@ function updateTimer(){
   document.getElementById('timer-box').classList.toggle('urgent',timeLeft<=30);
 }
 
-// SEND
 function sendMsg(){
   const input=document.getElementById('msg-input');
   const text=input.value.trim();
@@ -668,11 +633,9 @@ function sendMsg(){
   input.value='';input.style.height='auto';
   msgCount++;
   if(msgCount===1) firstAdvisorMsgTime=Date.now();
-
   addAdvisorMsg(text);
   transcript.push('Advisor: '+text);
   geminiHistory.push({role:'user',parts:[{text}]});
-
   if(lastMsgAllowed){
     document.getElementById('msg-input').disabled=true;
     document.getElementById('send-btn').disabled=true;
@@ -683,14 +646,13 @@ function sendMsg(){
   getClientReply().catch(console.error);
 }
 
-// CLIENT REPLY
 async function getClientReply(){
   showTyping(true);
   const elapsed=180-timeLeft;
   const phase=elapsed<90
     ?'You are still in your early defensive mode. Keep replies short and guarded.'
     :'The session has been going for over a minute. You can allow yourself to soften slightly while staying in character.';
-  const sysPrompt=client.systemPrompt+'\n\nPHASE: '+phase+'\nLENGTH: maximum 2-3 sentences. Be natural. Never comment on conversation structure.';
+  const sysPrompt=client.systemPrompt+'\n\nPHASE: '+phase+'\nLENGTH: maximum 2-3 sentences. Never comment on conversation structure.';
   try{
     const reply=await callGemini({
       model:'gemini-2.5-flash',
@@ -710,32 +672,26 @@ async function getClientReply(){
   }
 }
 
-// FINISH
 async function finishSession(){
   document.getElementById('score-row').style.display='none';
   document.getElementById('sheets-status').style.display='none';
-  document.getElementById('end-sub').textContent=client.name+' · '+client.statusLabel;
+  document.getElementById('end-sub').textContent=client.name+' · '+client.levelLabel;
   document.getElementById('score-client').textContent=client.name;
   switchScreen('screen-chat','screen-end');
   await getFinalFeedback();
 }
 
-// FINAL FEEDBACK — fixed parsing
 async function getFinalFeedback(){
   const fb=document.getElementById('end-feedback');
   fb.innerHTML='<div class="ef-text" style="color:var(--g6);font-style:italic">Generating your results…</div>';
 
   const responseSeconds=(firstClientMsgTime&&firstAdvisorMsgTime)
     ?Math.round((firstAdvisorMsgTime-firstClientMsgTime)/1000):null;
+  const speedScore=responseSeconds===null?10:responseSeconds<=7?20:responseSeconds<=12?14:responseSeconds<=20?8:3;
 
-  const speedScore=responseSeconds===null?10
-    :responseSeconds<=7?20
-    :responseSeconds<=12?14
-    :responseSeconds<=20?8:3;
+  const prompt=`You are a senior coach evaluating a tarot/psychic advisor's 3-minute practice session. Speak directly to the advisor using "you" and "your" throughout — never refer to them in the third person.
 
-  const prompt=`You are a senior coach evaluating a tarot/psychic advisor's 3-minute practice session. Be specific, honest, and constructive. Reference what the advisor actually wrote.
-
-CLIENT: ${client.name} — ${client.statusLabel}
+CLIENT: ${client.name} — ${client.levelLabel}
 Client description: ${client.desc}
 First response time: ${responseSeconds!==null?responseSeconds+' seconds':'not measured'} → Speed score is already set to ${speedScore}/20, do NOT change it.
 
@@ -744,64 +700,60 @@ ${transcript.join('\n')}
 
 Total advisor messages: ${msgCount}
 
-Evaluate the advisor on these 5 criteria. Use EXACTLY this format. Plain text only, no markdown, no asterisks.
+Evaluate the advisor on these 5 criteria. Use EXACTLY this format. Plain text only, no markdown, no asterisks. Address the advisor as "you" throughout.
 
 ---TAROT_KNOWLEDGE---
 SCORE:${'{'}number 0-25{'}'}
-COMMENT:${'{'}2 sentences about Rider-Waite tarot card usage. If no cards were named, say so explicitly.{'}'}
+COMMENT:${'{'}2 sentences using "you"/"your" — about how you used Rider-Waite tarot card names and symbolism. If you named no cards, say so.{'}'}
 
 ---EMPATHY---
 SCORE:${'{'}number 0-25{'}'}
-COMMENT:${'{'}2 sentences about emotional attunement, validation, warmth.{'}'}
+COMMENT:${'{'}2 sentences using "you"/"your" — about how you acknowledged the client's emotional state and created warmth.{'}'}
 
 ---FIRST_RESPONSE_SPEED---
 SCORE:${speedScore}
-COMMENT:${'{'}1 sentence. The advisor responded in ${responseSeconds!==null?responseSeconds+' seconds':'an unmeasured time'}, which gives a score of ${speedScore}/20.{'}'}
+COMMENT:${'{'}1 sentence using "you" — you responded in ${responseSeconds!==null?responseSeconds+' seconds':'an unmeasured time'}, which gives a score of ${speedScore}/20.{'}'}
 
 ---ENGAGEMENT---
 SCORE:${'{'}number 0-15{'}'}
-COMMENT:${'{'}2 sentences about deepening the session, meaningful questions, keeping the client curious.{'}'}
+COMMENT:${'{'}2 sentences using "you"/"your" — about how well you deepened the session, asked meaningful questions, kept the client curious.{'}'}
 
 ---INTRIGUE_AT_END---
 SCORE:${'{'}number 0-15{'}'}
-COMMENT:${'{'}2 sentences about how the advisor closed — hook, teaser, powerful final line, or abrupt stop.{'}'}
+COMMENT:${'{'}2 sentences using "you"/"your" — about how you closed the session. Was there a hook or powerful final line, or did it just stop?{'}'}
 
 ---KEY_INSIGHT---
-COMMENT:${'{'}1 sentence — the single most important takeaway from this session.{'}'}`;
+COMMENT:${'{'}1 sentence addressed directly to the advisor using "you" — the single most important takeaway.{'}'}`;
 
   try{
     const raw=await callGemini({
       model:'gemini-2.5-flash',
-      system_instruction:{parts:[{text:'You are a senior coach evaluating a tarot advisor. Follow the output format exactly.'}]},
+      system_instruction:{parts:[{text:'You are a senior coach evaluating a tarot advisor. Follow the output format exactly. Use "you" and "your" when addressing the advisor — never third person.'}]},
       contents:[{role:'user',parts:[{text:prompt}]}],
       generationConfig:{maxOutputTokens:2000,temperature:0.8}
     });
 
-    console.log('RAW FEEDBACK:', raw);
-
-    // Robust parsing with section markers
-    function parseSection(text, marker){
-      const rx=new RegExp('---'+marker+'---[\\s\\S]*?SCORE:(\\d+)[\\s\\S]*?COMMENT:([^\\n-][\\s\\S]*?)(?=---|$)','i');
+    function parseSection(text,marker){
+      const rx=new RegExp('---'+marker+'---[\\s\\S]*?SCORE:(\\d+)[\\s\\S]*?COMMENT:([^\\n\\-][\\s\\S]*?)(?=---|$)','i');
       const m=text.match(rx);
       if(!m) return {score:null,comment:''};
       return {score:parseInt(m[1]),comment:m[2].trim()};
     }
     function parseKeyInsight(text){
-      const rx=/---KEY_INSIGHT---[\s\S]*?COMMENT:([^\n-][\s\S]*?)(?=---|$)/i;
+      const rx=/---KEY_INSIGHT---[\s\S]*?COMMENT:([^\n\-][\s\S]*?)(?=---|$)/i;
       const m=text.match(rx);
       return m?m[1].trim():'';
     }
 
-    const tarot    = parseSection(raw,'TAROT_KNOWLEDGE');
-    const empathy  = parseSection(raw,'EMPATHY');
-    const speed    = {score:speedScore, comment:parseSection(raw,'FIRST_RESPONSE_SPEED').comment};
-    const engage   = parseSection(raw,'ENGAGEMENT');
-    const intrigue = parseSection(raw,'INTRIGUE_AT_END');
-    const insight  = parseKeyInsight(raw);
+    const tarot   =parseSection(raw,'TAROT_KNOWLEDGE');
+    const empathy =parseSection(raw,'EMPATHY');
+    const speed   ={score:speedScore,comment:parseSection(raw,'FIRST_RESPONSE_SPEED').comment};
+    const engage  =parseSection(raw,'ENGAGEMENT');
+    const intrigue=parseSection(raw,'INTRIGUE_AT_END');
+    const insight =parseKeyInsight(raw);
 
-    const total = (tarot.score||0)+(empathy.score||0)+speed.score+(engage.score||0)+(intrigue.score||0);
+    const total=(tarot.score||0)+(empathy.score||0)+speed.score+(engage.score||0)+(intrigue.score||0);
 
-    // Show total score
     const numEl=document.getElementById('score-num');
     numEl.textContent=total;
     numEl.style.color=total>=75?'var(--mint)':total>=50?'var(--gold)':'var(--coral)';
@@ -829,36 +781,31 @@ COMMENT:${'{'}1 sentence — the single most important takeaway from this sessio
         ${data.comment?`<div class="ef-text">${data.comment}</div>`:''}
       </div>`;
     });
-
     if(insight){
       html+=`<div class="ef-section" style="padding-top:14px;border-top:1px solid var(--border)">
         <span class="ef-label">Key Insight</span>
         <div class="ef-text">${insight}</div>
       </div>`;
     }
-
     fb.innerHTML=html;
     await sendToSheets(total,raw,{tarot:tarot.score,empathy:empathy.score,speed:speed.score,engage:engage.score,intrigue:intrigue.score},responseSeconds);
-
   }catch(e){
     console.error(e);
-    fb.innerHTML='<div class="ef-section"><div class="ef-text" style="color:var(--coral)">Could not generate analysis. Please check your connection and try again.</div></div>';
+    fb.innerHTML='<div class="ef-section"><div class="ef-text" style="color:var(--coral)">Could not generate analysis. Please check your connection.</div></div>';
   }
 }
 
-// SHEETS
 async function sendToSheets(total,feedbackText,scores,responseSeconds){
   if(!WEBHOOK_URL) return;
   const statusEl=document.getElementById('sheets-status');
   const dotEl=document.getElementById('sheets-dot');
   const msgEl=document.getElementById('sheets-msg');
   statusEl.style.display='flex';
-
   const payload={
     timestamp:new Date().toISOString(),
     advisorName,advisorEmail,
     clientId:client.id,clientName:client.name,
-    clientStatus:client.statusLabel,
+    practiceLevel:client.levelLabel,
     totalScore:total,
     scoreTarot:scores.tarot,scoreEmpathy:scores.empathy,
     scoreSpeed:scores.speed,scoreEngagement:scores.engage,scoreIntrigue:scores.intrigue,
@@ -867,7 +814,6 @@ async function sendToSheets(total,feedbackText,scores,responseSeconds){
     feedback:feedbackText,
     transcript:transcript.join('\n'),
   };
-
   try{
     await fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     dotEl.className='sheets-dot ok';
@@ -878,7 +824,6 @@ async function sendToSheets(total,feedbackText,scores,responseSeconds){
   }
 }
 
-// UI HELPERS
 function switchScreen(from,to){
   document.getElementById(from).classList.remove('active');
   document.getElementById(to).classList.add('active');
@@ -919,7 +864,6 @@ function getTime(){
   return new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
 }
 
-// INPUT EVENTS
 document.getElementById('msg-input').addEventListener('keydown',e=>{
   if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}
 });
