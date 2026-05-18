@@ -366,10 +366,6 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
         <div class="score-label">Client</div>
       </div>
     </div>
-    <div class="sheets-status" id="sheets-status" style="display:none">
-      <div class="sheets-dot loading" id="sheets-dot"></div>
-      <span id="sheets-msg">Saving results…</span>
-    </div>
     <div class="end-feedback" id="end-feedback">
       <div class="ef-text" style="color:var(--g6);font-style:italic">Generating your results…</div>
     </div>
@@ -681,7 +677,6 @@ async function getClientReply(){
 
 async function finishSession(){
   document.getElementById('score-row').style.display='none';
-  document.getElementById('sheets-status').style.display='none';
   document.getElementById('end-sub').textContent=client.name+' · '+client.levelLabel;
   document.getElementById('score-client').textContent=client.name;
   switchScreen('screen-chat','screen-end');
@@ -760,8 +755,26 @@ COMMENT:{1 sentence directly to the advisor using "you" — the single most impo
     const intrigue=parseSection(raw,'INTRIGUE_AT_END');
     const insight =parseKeyInsight(raw);
 
-    const rawTotal=(empathy.score||0)+speed.score+(engage.score||0)+(intrigue.score||0);
-    const total=Math.max(60,Math.min(100,rawTotal));
+    // якщо сума < 60 — пропорційно додаємо різницю до кожного критерію (крім speed)
+    let eScore = empathy.score||0;
+    let enScore = engage.score||0;
+    let inScore = intrigue.score||0;
+    const rawTotal = eScore + speed.score + enScore + inScore;
+
+    if(rawTotal < 60){
+      const diff = 60 - rawTotal;
+      const flexMax = 30 + 25 + 25; // max балів для гнучких критеріїв
+      const flexCurrent = eScore + enScore + inScore;
+      const flexRoom = flexMax - flexCurrent;
+      if(flexRoom > 0){
+        const ratio = diff / flexRoom;
+        eScore  = Math.min(30, Math.round(eScore  + (30 - eScore)  * ratio));
+        enScore = Math.min(25, Math.round(enScore + (25 - enScore) * ratio));
+        inScore = Math.min(25, Math.round(inScore + (25 - inScore) * ratio));
+      }
+    }
+
+    const total = eScore + speed.score + enScore + inScore;
 
     const numEl=document.getElementById('score-num');
     numEl.textContent=total;
@@ -769,15 +782,14 @@ COMMENT:{1 sentence directly to the advisor using "you" — the single most impo
     document.getElementById('score-row').style.display='flex';
 
     const criteria=[
-      {label:'💜 Empathy',              data:empathy,  max:30},
-      {label:'⚡ First Response Speed', data:speed,    max:20},
-      {label:'🔗 Engagement',           data:engage,   max:25},
-      {label:'✨ Intrigue at the End',  data:intrigue, max:25},
+      {label:'💜 Empathy',              score:eScore,      max:30, comment:empathy.comment},
+      {label:'⚡ First Response Speed', score:speed.score, max:20, comment:speed.comment},
+      {label:'🔗 Engagement',           score:enScore,     max:25, comment:engage.comment},
+      {label:'✨ Intrigue at the End',  score:inScore,     max:25, comment:intrigue.comment},
     ];
 
     let html='';
-    criteria.forEach(({label,data,max})=>{
-      const score=data.score!==null?data.score:0;
+    criteria.forEach(({label,score,max,comment})=>{
       const pct=Math.round((score/max)*100);
       const color=pct>=75?'var(--mint)':pct>=50?'var(--gold)':'var(--coral)';
       html+=`<div class="ef-section">
@@ -786,7 +798,7 @@ COMMENT:{1 sentence directly to the advisor using "you" — the single most impo
           <div class="crit-bar-bg"><div class="crit-bar-fill" style="width:${pct}%;background:${color}"></div></div>
           <span class="crit-pts" style="color:${color}">${score}/${max}</span>
         </div>
-        ${data.comment?`<div class="ef-text">${data.comment}</div>`:''}
+        ${comment?`<div class="ef-text">${comment}</div>`:''}
       </div>`;
     });
     if(insight){
@@ -796,7 +808,7 @@ COMMENT:{1 sentence directly to the advisor using "you" — the single most impo
       </div>`;
     }
     fb.innerHTML=html;
-    await sendToSheets(total,raw,{empathy:empathy.score,speed:speed.score,engage:engage.score,intrigue:intrigue.score},responseSeconds,{
+    await sendToSheets(total,raw,{empathy:eScore,speed:speed.score,engage:enScore,intrigue:inScore},responseSeconds,{
       feedbackEmpathy:empathy.comment,
       feedbackSpeed:speed.comment,
       feedbackEngagement:engage.comment,
@@ -811,10 +823,6 @@ COMMENT:{1 sentence directly to the advisor using "you" — the single most impo
 
 async function sendToSheets(total,feedbackText,scores,responseSeconds,feedbacks){
   if(!WEBHOOK_URL) return;
-  const statusEl=document.getElementById('sheets-status');
-  const dotEl=document.getElementById('sheets-dot');
-  const msgEl=document.getElementById('sheets-msg');
-  statusEl.style.display='flex';
   const payload={
     sheetTarget:'trial',
     timestamp:new Date().toISOString(),
@@ -835,11 +843,8 @@ async function sendToSheets(total,feedbackText,scores,responseSeconds,feedbacks)
   };
   try{
     await fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-    dotEl.className='sheets-dot ok';
-    msgEl.textContent='Results saved to Google Sheets ✓';
   }catch(e){
-    dotEl.className='sheets-dot err';
-    msgEl.textContent='Could not save to Google Sheets';
+    console.error('Sheets sync failed:',e);
   }
 }
 
