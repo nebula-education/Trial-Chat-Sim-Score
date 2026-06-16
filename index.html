@@ -638,7 +638,7 @@ COMMENT:{2-3 sentences of specific actionable advice based on THIS session. Refe
       return {score:parseInt(m[1]),comment:m[2].trim()};
     }
     function parseNextTip(text){
-      const rx=/---ADVICE_FOR_NEXT_SESSION---[\s\S]*?COMMENT:([^\n\-][\s\S]*?)(?=---|$)/i;
+      const rx=/---ADVICE_FOR_NEXT_SESSION---[\s\S]*?COMMENT:([\s\S]*?)(?=\n---|\s*$)/i;
       const m=text.match(rx);
       return m?m[1].trim():'';
     }
