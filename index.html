@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Trial Chat Simulation · Nebula Academy</title>
+<title>AI Trial Chat Simulation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 .intro-star{position:absolute;border-radius:50%;background:#6F70F6;animation:starPulse var(--d,3s) ease-in-out infinite;opacity:0}
 @keyframes starPulse{0%,100%{opacity:0;transform:scale(.8)}50%{opacity:.4;transform:scale(1.2)}}
 .intro-topbar{width:100%;display:flex;align-items:center;gap:10px;padding:18px 32px;background:var(--li-bg);border-bottom:1px solid var(--li-border);flex-shrink:0;position:sticky;top:0;z-index:10}
-.intro-topbar-icon{height:32px;width:auto}
+.intro-topbar-icon{height:36px;width:auto}
 .intro-topbar-name{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--purple);font-family:Inter,sans-serif}
 .intro-body{position:relative;z-index:1;width:100%;max-width:640px;padding:40px 24px 60px;margin:0 auto;animation:fadeUp .5s ease both}
 .intro-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--purple);font-weight:600;margin-bottom:14px;display:block}
@@ -188,7 +188,7 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 <div class="screen active" id="screen-intro">
   <div class="intro-stars" id="intro-stars"></div>
   <div class="intro-topbar">
-    <img class="intro-topbar-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAwIAAAMCCAYAAADavHG4AAAKMWlDQ1BJQ0MgUHJvZmlsZQAAeJydlndUU9kWh8+9N71QkhCKlNBraFICSA29SJEuKjEJEArAkAAiNkRUcERRkaYIMijggKNDkbEiioUBUbHrBBlE1HFwFBuWSWStGd+8ee/Nm98f935rn73P3Wfvfda6AJD8gwXCTFgJgAyhWBTh58WIjYtnYAcBDPAAA2wA4HCzs0IW+EYCmQJ82IxsmRP4F726DiD5+yrTP4zBAP+flLlZIjEAUJiM5/L42VwZF8k4PVecJbdPyZi2NE3OMErOIlmCMlaTc/IsW3z2mWUPOfMyhDwZy3PO4mXw5Nwn4405Er6MkWAZF+cI+LkyviZjg3RJhkDGb+SxGXxONgAoktwu5nNTZGwtY5IoMoIt43kA4EjJX/DSL1jMzxPLD8XOzFouEiSniBkmXFOGjZMTi+HPz03ni8XMMA43jSPiMdiZGVkc4XIAZs/8WRR5bRmyIjvYODk4MG0tbb4o1H9d/JuS93aWXoR/7hlEH/jD9ld+mQ0AsKZltdn6h21pFQBd6wFQu/2HzWAvAIqyvnUOfXEeunxeUsTiLGcrq9zcXEsBn2spL+jv+p8Of0NffM9Svt3v5WF485M4knQxQ143bmZ6pkTEyM7icPkM5p+H+B8H/nUeFhH8JL6IL5RFRMumTCBMlrVbyBOIBZlChkD4n5r4D8P+pNm5lona+BHQllgCpSEaQH4eACgqESAJe2Qr0O99C8ZHA/nNi9GZmJ37z4L+fVe4TP7IFiR/jmNHRDK4ElHO7Jr8WgI0IABFQAPqQBvoAxPABLbAEbgAD+ADAkEoiARxYDHgghSQAUQgFxSAtaAYlIKtYCeoBnWgETSDNnAYdIFj4DQ4By6By2AE3AFSMA6egCnwCsxAEISFyBAVUod0IEPIHLKFWJAb5AMFQxFQHJQIJUNCSAIVQOugUqgcqobqoWboW+godBq6AA1Dt6BRaBL6FXoHIzAJpsFasBFsBbNgTzgIjoQXwcnwMjgfLoK3wJVwA3wQ7oRPw5fgEVgKP4GnEYAQETqiizARFsJGQpF4JAkRIauQEqQCaUDakB6kH7mKSJGnyFsUBkVFMVBMlAvKHxWF4qKWoVahNqOqUQdQnag+1FXUKGoK9RFNRmuizdHO6AB0LDoZnYsuRlegm9Ad6LPoEfQ4+hUGg6FjjDGOGH9MHCYVswKzGbMb0445hRnGjGGmsVisOtYc64oNxXKwYmwxtgp7EHsSewU7jn2DI+J0cLY4X1w8TogrxFXgWnAncFdwE7gZvBLeEO+MD8Xz8MvxZfhGfA9+CD+OnyEoE4wJroRIQiphLaGS0EY4S7hLeEEkEvWITsRwooC4hlhJPEQ8TxwlviVRSGYkNimBJCFtIe0nnSLdIr0gk8lGZA9yPFlM3kJuJp8h3ye/UaAqWCoEKPAUVivUKHQqXFF4pohXNFT0VFysmK9YoXhEcUjxqRJeyUiJrcRRWqVUo3RU6YbStDJV2UY5VDlDebNyi/IF5UcULMWI4kPhUYoo+yhnKGNUhKpPZVO51HXURupZ6jgNQzOmBdBSaaW0b2iDtCkVioqdSrRKnkqNynEVKR2hG9ED6On0Mvph+nX6O1UtVU9Vvuom1TbVK6qv1eaoeajx1UrU2tVG1N6pM9R91NPUt6l3qd/TQGmYaYRr5Grs0Tir8XQObY7LHO6ckjmH59zWhDXNNCM0V2ju0xzQnNbS1vLTytKq0jqj9VSbru2hnaq9Q/uE9qQOVcdNR6CzQ+ekzmOGCsOTkc6oZPQxpnQ1df11Jbr1uoO6M3rGelF6hXrtevf0Cfos/ST9Hfq9+lMGOgYhBgUGrQa3DfGGLMMUw12G/YavjYyNYow2GHUZPTJWMw4wzjduNb5rQjZxN1lm0mByzRRjyjJNM91tetkMNrM3SzGrMRsyh80dzAXmu82HLdAWThZCiwaLG0wS05OZw2xljlrSLYMtCy27LJ9ZGVjFW23T6bf6aG1vnW7daH3HhmITaFNo02Pzq62ZLde2xvbaXPJc37mr53bPfW5nbse322N3055qH2K/wb7X/oODo4PIoc1h0tHAMdGx1vEGi8YKY21mnXdCO3k5rXY65vTW2cFZ7HzY+RcXpkuaS4vLo3nG8/jzGueNueq5clzrXaVuDLdEt75uUnddd477g/sDD30PnkeTx4SnqWeq58lzHRe8vQDf+c0s34fUIbkCR0AGpMIAAdgBrLJeAuuMBVi0MeBACLtHOAACgDWgK8MpJcPH13vJMHCiNQGqKnAF4MRIAA7YkrjWiZ83WGJgKAOw7lHMiSGgBM1e9R2iS+2UJDXL1OfgA5MOhZT+JiUBISAWD+5vsBtqy3HMv4pMSFmKkZm5hZRthrx+VQHkNEYAMq3DgBM8T6B2ZiU1TlHJY0ygBMCBxpJfTpbBWTBoaWBDpPiMbBzBBIa5D/T4CuBgjAWiRKaqAoYGkb2AEb2GQZ2Q2AMuaBQKR4pZB6pGlAqCPDAp9DEHq/j+Wm6D5bvLfQ/3j1OQVN/nrBV6ycMkG6rlkwRh4JmCpJBLg5vR5TblN/YPRS1oNd7pNiLakXVqIlEIiXGkF7dOmLN1cSEEZpCeF4OLRoXW/pV5QBKBfqT6Gz/u8LHzfQM7Yr/AEQAMQ0FUJFYkpAAAFiklEQVR42u3BMQEAAADCoPVP7WsIoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAMBuAABHgAAAABJRU5ErkJggg==" alt="Nebula">
+    <img class="intro-topbar-icon" src="data:image/png;base64,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" alt="Nebula" style="height:36px;width:auto">
     <span class="intro-topbar-name">NEBULA</span>
   </div>
   <div class="intro-body">
@@ -238,7 +238,6 @@ html,body{height:100%;background:var(--bg);font-family:Inter,system-ui,sans-seri
 <div class="screen star-bg" id="screen-login">
   <div class="login-wrap">
     <div class="logo-box"><img src="data:image/png;base64,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" alt="Nebula"></div>
-    <span class="login-eyebrow">Nebula Academy</span>
     <h1 class="login-title">AI Trial Chat<br>Simulation</h1>
     <p class="login-sub">Sign in to begin. Your results are saved automatically.</p>
     <div class="field-group">
@@ -557,7 +556,7 @@ async function getFinalFeedback(){
       </div>`;
     });
     html+=`<div class="ef-section" style="padding-top:14px;border-top:1px solid var(--border)">
-      <span class="ef-label">💡 Tip for Your Next Session</span>
+      <span class="ef-label">💡 Advice for Your Next Session</span>
       <div class="ef-text">You did not send any messages during the session. To complete the simulation, start typing as soon as the client's opening message appears — your first response sets the tone for the entire session.</div>
     </div>`;
     fb.innerHTML=html;
@@ -621,13 +620,13 @@ COMMENT:{2 sentences using "you"/"your". Did you take initiative and lead the co
 SCORE:{number 0-25}
 COMMENT:{2 sentences using "you"/"your". Did your final message create a real reason to continue? Was there a hook, an open loop, something worth paying to read?}
 
----NEXT_SESSION_TIP---
-COMMENT:{2 sentences using "you" — one concrete, actionable tip the advisor should focus on in their very next session.}`;
+---ADVICE_FOR_NEXT_SESSION---
+COMMENT:{2-3 sentences of specific actionable advice based on THIS session. Reference what actually happened. Tell the advisor the one pattern that held them back most, and exactly what to do differently next time. Be direct, not generic.}`;
 
   try{
     const raw=await callGemini({
       model:'gemini-2.5-flash',
-      system_instruction:{parts:[{text:'You are a senior coach evaluating a psychic advisor qualification session. Follow output format exactly. Use "you"/"your". Score honestly based on the calibration provided — do not inflate or deflate.'}]},
+      system_instruction:{parts:[{text:'You are a senior coach evaluating a psychic advisor qualification session. Follow output format exactly. Use "you"/"your". Score honestly based on the calibration provided — do not inflate or deflate. The last section ADVICE_FOR_NEXT_SESSION must reference specific moments from the transcript.'}]},
       contents:[{role:'user',parts:[{text:prompt}]}],
       generationConfig:{maxOutputTokens:2000,temperature:0.8}
     });
@@ -639,7 +638,7 @@ COMMENT:{2 sentences using "you" — one concrete, actionable tip the advisor sh
       return {score:parseInt(m[1]),comment:m[2].trim()};
     }
     function parseNextTip(text){
-      const rx=/---NEXT_SESSION_TIP---[\s\S]*?COMMENT:([^\n\-][\s\S]*?)(?=---|$)/i;
+      const rx=/---ADVICE_FOR_NEXT_SESSION---[\s\S]*?COMMENT:([^\n\-][\s\S]*?)(?=---|$)/i;
       const m=text.match(rx);
       return m?m[1].trim():'';
     }
@@ -685,7 +684,7 @@ COMMENT:{2 sentences using "you" — one concrete, actionable tip the advisor sh
     });
     if(nextTip){
       html+=`<div class="ef-section" style="padding-top:14px;border-top:1px solid var(--border)">
-        <span class="ef-label">💡 Tip for Your Next Session</span>
+        <span class="ef-label">💡 Advice for Your Next Session</span>
         <div class="ef-text">${nextTip}</div>
       </div>`;
     }
